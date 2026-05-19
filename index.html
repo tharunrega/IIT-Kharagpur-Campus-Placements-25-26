@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Placement JD 2025–2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --surface2: #22223a;
+      --border: #2e2e45;
+      --accent: #6c63ff;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 36px 24px 28px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h1 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+
+    .header p { color: var(--muted); font-size: 0.88rem; margin-bottom: 20px; }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+      max-width: 380px;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 11px 12px 11px 40px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 0.93rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus { border-color: var(--accent); }
+    input[type="text"]::placeholder { color: var(--muted); }
+
+    select {
+      padding: 11px 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 0.88rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    select:focus { border-color: var(--accent); }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 12px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .stats span { color: var(--text); font-weight: 600; }
+
+    /* SORT BAR */
+    .sort-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .sort-label { font-size: 0.78rem; color: var(--muted); margin-right: 2px; }
+
+    .sort-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.18s;
+      user-select: none;
+    }
+
+    .sort-btn:hover { border-color: var(--accent); color: var(--text); }
+    .sort-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 14px;
+      padding: 20px 24px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #6c63ff, #60a5fa);
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 28px rgba(108,99,255,0.15);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .company-name {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .ctc-badge {
+      flex-shrink: 0;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .ctc-high  { background: rgba(34,197,94,.15);  color: #4ade80; border: 1px solid rgba(34,197,94,.3); }
+    .ctc-mid   { background: rgba(96,165,250,.15); color: #93c5fd; border: 1px solid rgba(96,165,250,.3); }
+    .ctc-low   { background: rgba(245,158,11,.15); color: #fcd34d; border: 1px solid rgba(245,158,11,.3); }
+    .ctc-na    { background: rgba(136,136,170,.1); color: var(--muted); border: 1px solid var(--border); }
+    .ctc-intl  { background: rgba(255,101,132,.15);color: #fca5a5; border: 1px solid rgba(255,101,132,.3); }
+
+    .role-name { font-size: 0.88rem; color: #a0a0c0; line-height: 1.4; }
+
+    .divider { height: 1px; background: var(--border); }
+
+    .dates {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .date-item { display: flex; flex-direction: column; gap: 1px; }
+    .date-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .date-value { font-size: 0.83rem; font-weight: 600; color: var(--text); }
+    .date-time  { font-size: 0.73rem; color: var(--muted); }
+
+    .deadline-soon .date-value { color: #f59e0b; }
+    .deadline-past .date-value  { color: #ef4444; }
+
+    .card-footer { display: flex; justify-content: flex-end; margin-top: 2px; }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c63ff, #42a1ff);
+      color: #fff;
+      border-radius: 9px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.15s;
+    }
+
+    .open-btn:hover { opacity: 0.85; transform: scale(1.04); }
+
+    /* EMPTY */
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
+    }
+
+    .empty p { font-size: 1.05rem; margin-top: 16px; }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.18s;
+    }
+
+    .page-btn:hover { border-color: var(--accent); color: var(--text); }
+    .page-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .page-btn:disabled { opacity: 0.3; cursor: default; }
+
+    @media (max-width: 600px) {
+      .grid { padding: 14px; gap: 10px; }
+      .sort-bar, .stats { padding: 10px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Placement Job Descriptions 2025–26</h1>
+  <p>IIT Kharagpur Campus Placements</p>
+  <div class="controls">
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search company / role / CTC…" oninput="applyAll()" />
+    </div>
+    <select id="ctcFilter" onchange="applyAll()">
+      <option value="">All CTC</option>
+      <option value="0-10">Below 10 LPA</option>
+      <option value="10-20">10–20 LPA</option>
+      <option value="20-30">20–30 LPA</option>
+      <option value="30-50">30–50 LPA</option>
+      <option value="50+">50+ LPA</option>
+      <option value="intl">International</option>
+      <option value="na">Not Specified</option>
+    </select>
+    <select id="perPage" onchange="applyAll()">
+      <option value="24">24 / page</option>
+      <option value="48">48 / page</option>
+      <option value="100">100 / page</option>
+      <option value="9999">Show all</option>
+    </select>
+  </div>
+</div>
+
+<div class="stats">
+  Showing <span id="countShown">0</span> of <span id="countTotal">0</span> listings
+  &nbsp;·&nbsp; Highest CTC: <span id="highCTC">—</span>
+  &nbsp;·&nbsp; Page <span id="pageInfo">1</span>
+</div>
+
+<div class="sort-bar">
+  <span class="sort-label">Sort by:</span>
+  <button class="sort-btn" data-col="company"  onclick="setSort('company')">Company <span class="arrow">↕</span></button>
+  <button class="sort-btn" data-col="role"     onclick="setSort('role')">Role <span class="arrow">↕</span></button>
+  <button class="sort-btn active" data-col="ctc" onclick="setSort('ctc')">CTC <span class="arrow">↓</span></button>
+  <button class="sort-btn" data-col="cvOpen"   onclick="setSort('cvOpen')">CV Open <span class="arrow">↕</span></button>
+  <button class="sort-btn" data-col="deadline" onclick="setSort('deadline')">Deadline <span class="arrow">↕</span></button>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="pagination" id="pagination"></div>
+
+<script>
+const BASE = "./";
+
+const RAW = [
+  ["10x Construction.ai","(Perception/Robotics Software/AI Research) Engineer","20.0 LPA","2025-11-27","19:00","2025-11-28","23:59","JDs_Phase2/10x_Construction.ai_685_1.html"],
+  ["64squares","Business Analyst","16.5 LPA","2026-01-11","16:51","2026-01-12","23:59","JDs_Phase2/64squares_811_1.html"],
+  ["AAJ Supply Chain Management","Software Developer (Fullstack)","16.0 LPA","2025-11-24","21:45","2025-11-25","23:59","JDs_Phase2/AAJ_Supply_Chain_Management_460_1.html"],
+  ["ACCENTURE AEH","Advanced Engineering Analyst","18.1 LPA","2025-10-22","14:58","2025-10-24","23:59","JDs_Phase2/ACCENTURE_AEH_364_1.html"],
+  ["ACCORDION","Analyst 2 (Data Science)","Not specified","2025-11-11","10:35","2025-11-12","23:59","JDs_Phase2/ACCORDION_286_2.html"],
+  ["ACCORDION","Analyst 2- (Business)","Not specified","2025-11-11","10:36","2025-11-12","23:59","JDs_Phase2/ACCORDION_286_3.html"],
+  ["ACCORDION","Data Engineer 2","12.0 LPA","2025-11-11","10:38","2025-11-12","23:59","JDs_Phase2/ACCORDION_286_4.html"],
+  ["ACT21 Software","AI Software Engineer Trainee","8.0 LPA","2026-03-12","15:52","2026-03-14","23:59","JDs_Phase2/ACT21_Software_933_1.html"],
+  ["AGENT MIRA","Applied AI Scientist","8.0 LPA","2026-01-27","16:18","2026-01-29","23:59","JDs_Phase2/AGENT_MIRA_578_1.html"],
+  ["AGM INC","Graduate Mining Engineer (Open Pit)","Not specified","2026-03-05","21:14","2026-03-07","23:59","JDs_Phase2/AGM_INC_843_2.html"],
+  ["ALIGN",": C++ and Computational Geometry Engineer","18.6 LPA","2025-12-08","07:30","2025-12-08","23:59","JDs_Phase2/ALIGN_749_1.html"],
+  ["APPLE","Software Development Engineer","36.0 LPA","2025-11-06","18:59","2025-11-08","23:59","JDs_Phase2/APPLE_587_1.html"],
+  ["APPLE","Hardware Reliability Engineering - iPhone System Reliability Engineer","36.0 LPA","2025-11-14","12:45","2025-11-15","17:00","JDs_Phase2/APPLE_587_3.html"],
+  ["APPLE","Apple Service Engineering - Storage Infrastructure and Reliability","36.0 LPA","2025-11-14","12:47","2025-11-15","17:00","JDs_Phase2/APPLE_587_5.html"],
+  ["AURONOVA CONSULTING","Analyst","14.0 LPA","2025-11-13","17:56","2025-11-15","15:00","JDs_Phase2/AURONOVA_CONSULTING_408_1.html"],
+  ["AWE Global Research Private Ltd","R&amp;D Engineer","12.0 LPA","2026-03-23","12:30","2026-03-24","11:59","JDs_Phase2/AWE_Global_Research_Private_Ltd_958_1.html"],
+  ["Aakash Educational Services Ltd","Assistant Lecturer","7.2 LPA","2026-03-03","09:35","2026-03-06","15:00","JDs_Phase2/Aakash_Educational_Services_Ltd_861_1.html"],
+  ["Aarvee Engineering Consultants","Post Graduate Trianee Engineer","9.0 LPA","2025-12-04","18:00","2025-12-05","21:00","JDs_Phase2/Aarvee_Engineering_Consultants_351_1.html"],
+  ["Absolute","Research Associate/Sr. Research Associate","10.2 LPA","2026-03-18","11:35","2026-03-24","11:59","JDs_Phase2/Absolute_967_2.html"],
+  ["Accenture","S&amp;C Delivery Associate","21.4 LPA","2025-10-22","15:00","2025-10-24","23:59","JDs_Phase2/Accenture_483_1.html"],
+  ["Accenture Japan Ltd.","Digital Consultant","8186180 JPY","2025-10-09","17:54","2025-10-13","22:00","JDs_Phase2/Accenture_Japan_Ltd._336_1.html"],
+  ["Accenture Japan Ltd.","Business Consultant","8186180 JPY","2025-10-09","17:56","2025-10-13","22:00","JDs_Phase2/Accenture_Japan_Ltd._336_2.html"],
+  ["Accenture Strategy and Consulting","Ind &amp; Func AI Decision Science Associate","21.4 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Accenture_Strategy_and_Consulting_518_2.html"],
+  ["Accenture Strategy and Consulting","Ind &amp; Func AI Decision Science Analyst - I","21.4 LPA","2026-02-20","15:25","2026-02-23","23:59","JDs_Phase2/Accenture_Strategy_and_Consulting_518_3.html"],
+  ["Acuvon Consulting Private Limited","Junior Analyst","13.2 LPA","2025-12-03","20:00","2025-12-04","23:00","JDs_Phase2/Acuvon_Consulting_Private_Limited_666_1.html"],
+  ["Acuvon Consulting Private Limited","Analyst","16.9 LPA","2025-12-03","19:00","2025-12-04","23:00","JDs_Phase2/Acuvon_Consulting_Private_Limited_666_2.html"],
+  ["Addverb","Graduate Engineer Trainee","16.2 LPA","2026-01-23","16:57","2026-01-27","11:59","JDs_Phase2/Addverb_540_1.html"],
+  ["Aditya Birla Science &amp; Technology","Scientist Modelling &amp; Simulation","8.5 LPA","2025-11-26","15:51","2025-11-28","01:59","JDs_Phase2/Aditya_Birla_Science_&amp;_Technology_191_2.html"],
+  ["Aditya Birla Science &amp; Technology","Scientist","8.5 LPA","2025-11-26","15:52","2025-11-28","02:00","JDs_Phase2/Aditya_Birla_Science_&amp;_Technology_191_3.html"],
+  ["Aditya Birla Science &amp; Technology","Scientist","8.5 LPA","2025-11-26","15:53","2025-11-28","01:59","JDs_Phase2/Aditya_Birla_Science_&amp;_Technology_191_4.html"],
+  ["Aditya Birla Science &amp; Technology","Scientist","8.5 LPA","2025-11-26","15:54","2025-11-28","01:59","JDs_Phase2/Aditya_Birla_Science_&amp;_Technology_191_5.html"],
+  ["Adrosonic IT Consultancy Services Private Limited","Research &amp; Innovation Engineer","10.0 LPA","2025-12-04","12:00","2025-12-06","11:00","JDs_Phase2/Adrosonic_IT_Consultancy_Services_Private_Limited_162_1.html"],
+  ["Aecom India Global Services Pvt Ltd","Electrical","8.5 LPA","2025-12-03","17:45","2025-12-04","11:59","JDs_Phase2/Aecom_India_Global_Services_Pvt_Ltd_470_1.html"],
+  ["Aecom India Global Services Pvt Ltd","Structures","8.5 LPA","2025-12-03","17:43","2025-12-04","11:59","JDs_Phase2/Aecom_India_Global_Services_Pvt_Ltd_470_3.html"],
+  ["Agnikul Cosmos Private Limited","Composite - Structural Analysis Engineer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_10.html"],
+  ["Agnikul Cosmos Private Limited","Navigation Guidance and Control Systems Engineer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_11.html"],
+  ["Agnikul Cosmos Private Limited","Embedded OS Developer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_12.html"],
+  ["Agnikul Cosmos Private Limited","Electronics Hardware Engineer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_13.html"],
+  ["Agnikul Cosmos Private Limited","Aerodynamics","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_14.html"],
+  ["Agnikul Cosmos Private Limited","Additive Manufacturing","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_15.html"],
+  ["Agnikul Cosmos Private Limited","3D Modelling Designer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_16.html"],
+  ["Agnikul Cosmos Private Limited","Testing team (Fluid system/Structural system)","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_3.html"],
+  ["Agnikul Cosmos Private Limited","Testing team (Electronics/Software)","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_4.html"],
+  ["Agnikul Cosmos Private Limited","Power Electronics Engineer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_5.html"],
+  ["Agnikul Cosmos Private Limited","Propulsion Systems","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_6.html"],
+  ["Agnikul Cosmos Private Limited","Structural Dynamic Analysis Engineer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_7.html"],
+  ["Agnikul Cosmos Private Limited","Printed Circuit Board design engineer","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_8.html"],
+  ["Agnikul Cosmos Private Limited","Instrumentation Software Design","15.0 LPA","2025-11-26","00:00","2025-11-28","23:59","JDs_Phase2/Agnikul_Cosmos_Private_Limited_652_9.html"],
+  ["Airbus India Private Limited","Associate Engineer -AESS","11.0 LPA","2025-11-15","14:51","2025-11-16","22:00","JDs_Phase2/Airbus_India_Private_Limited_331_1.html"],
+  ["Airbus India Private Limited","Associate Engineer - System Testing","11.0 LPA","2025-11-15","00:36","2025-11-16","22:00","JDs_Phase2/Airbus_India_Private_Limited_331_11.html"],
+  ["Airbus India Private Limited","Associate Engineer - In Service Engineering","11.0 LPA","2025-11-15","00:33","2025-11-16","22:00","JDs_Phase2/Airbus_India_Private_Limited_331_15.html"],
+  ["Airbus India Private Limited","Associate Engineer - PDI","11.0 LPA","2025-11-15","00:40","2025-11-16","22:00","JDs_Phase2/Airbus_India_Private_Limited_331_7.html"],
+  ["Airbus India Private Limited","Loads &amp; Aeroelastics Engineer","11.0 LPA","2025-11-15","00:38","2025-11-16","22:00","JDs_Phase2/Airbus_India_Private_Limited_331_9.html"],
+  ["Allen Career Institute Pvt. Ltd.","Trainee Faculty (Physics, Chemistry, Mathematics)","10.0 LPA","2026-03-16","15:34","2026-03-20","23:59","JDs_Phase2/Allen_Career_Institute_Pvt._Ltd._953_1.html"],
+  ["Amazon","Software Development Engineer","27.2 LPA","2025-11-22","18:16","2025-11-24","14:00","JDs_Phase2/Amazon_648_1.html"],
+  ["American Express","Management Trainee - Data Science &amp; Analytics","26.3 LPA","2025-10-22","15:00","2025-10-26","21:00","JDs_Phase2/American_Express_384_2.html"],
+  ["Anand Rathi Global Finance Limited","Management Trainee/Executive Trainee","14.0 LPA","2026-01-13","11:20","2026-01-18","15:59","JDs_Phase2/Anand_Rathi_Global_Finance_Limited_834_1.html"],
+  ["ApexPlus Technologies","FPGA Developer","8.0 LPA","2026-02-09","16:42","2026-02-10","23:59","JDs_Phase2/ApexPlus_Technologies_817_1.html"],
+  ["Applied Materials","Product Quality &amp; Reliability Engineer","14.9 LPA","2025-11-24","17:16","2025-11-27","14:59","JDs_Phase2/Applied_Materials_669_1.html"],
+  ["Arc Document","AIML Domain","13.0 LPA","2025-12-07","13:20","2025-12-08","15:00","JDs_Phase2/Arc_Document_478_1.html"],
+  ["Arc Document","Advanced Python Developer","13.0 LPA","2025-12-07","13:19","2025-12-08","15:00","JDs_Phase2/Arc_Document_478_2.html"],
+  ["Arcana","Software Engineer","60.0 LPA","2025-11-02","21:21","2025-11-03","23:59","JDs_Phase2/Arcana_429_1.html"],
+  ["Arpwood Capital","Analyst","20.0 LPA","2025-10-23","19:13","2025-10-28","16:00","JDs_Phase2/Arpwood_Capital_250_1.html"],
+  ["Arup India Pvt. Ltd.","Graduate Fire Engineer","9.5 LPA","2026-01-14","18:00","2026-01-16","23:59","JDs_Phase2/Arup_India_Pvt._Ltd._796_3.html"],
+  ["Arup India Pvt. Ltd.","Graduate Faade Engineer","9.5 LPA","2026-01-14","18:00","2026-01-16","23:59","JDs_Phase2/Arup_India_Pvt._Ltd._796_4.html"],
+  ["Astera Labs","Design Engineer","39.7 LPA","2025-11-13","15:08","2025-11-19","23:59","JDs_Phase2/Astera_Labs_582_2.html"],
+  ["Astera Labs","Design Verification Engineer","39.7 LPA","2025-11-13","15:19","2025-11-19","23:59","JDs_Phase2/Astera_Labs_582_4.html"],
+  ["Astera Labs","Physical Design Engineer","39.7 LPA","2025-11-13","15:46","2025-11-19","23:59","JDs_Phase2/Astera_Labs_582_8.html"],
+  ["Astera Labs","DFT Engineer","39.7 LPA","2025-11-13","15:46","2025-11-19","23:59","JDs_Phase2/Astera_Labs_582_9.html"],
+  ["Astrayan Private Limited","Controls Engineer","7.0 LPA","2026-02-05","14:48","2026-02-06","12:00","JDs_Phase2/Astrayan_Private_Limited_872_3.html"],
+  ["Athena Education","Associate Manager- Consulting","10.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Athena_Education_630_1.html"],
+  ["Athena Education","Senior Enginner","13.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Athena_Education_630_2.html"],
+  ["Ather Energy","GET- Supply Chain","15.0 LPA","2025-11-28","15:49","2025-11-28","23:59","JDs_Phase2/Ather_Energy_402_10.html"],
+  ["Ather Energy","GET - Department of Product Ownership","15.0 LPA","2025-11-11","13:34","2025-11-15","23:59","JDs_Phase2/Ather_Energy_402_3.html"],
+  ["Ather Energy","Battery Design Engineer","15.0 LPA","2025-11-11","13:34","2025-11-15","23:59","JDs_Phase2/Ather_Energy_402_4.html"],
+  ["Ather Energy","GET - Dept. of Chief Engineering","15.0 LPA","2025-11-11","13:33","2025-11-15","23:59","JDs_Phase2/Ather_Energy_402_5.html"],
+  ["Ather Energy","GET- System Engineer","15.0 LPA","2025-11-11","13:32","2025-11-15","23:59","JDs_Phase2/Ather_Energy_402_6.html"],
+  ["Ather Energy","Design Engineer - Hardware Packaging","15.0 LPA","2025-11-11","13:31","2025-11-15","23:59","JDs_Phase2/Ather_Energy_402_7.html"],
+  ["Ather Energy","Data science- Web Technologies","20.0 LPA","2025-11-11","13:30","2025-11-15","23:59","JDs_Phase2/Ather_Energy_402_8.html"],
+  ["Augnito","Speech Engineer","21.0 LPA","2025-11-13","16:02","2025-11-20","23:59","JDs_Phase2/Augnito_406_1.html"],
+  ["Augnito","NLP Engineer","21.0 LPA","2025-11-18","11:45","2025-11-20","23:59","JDs_Phase2/Augnito_406_2.html"],
+  ["Aura Semiconductor Pvt Ltd","Design Engineer Analog","20.0 LPA","2026-02-02","15:42","2026-02-03","23:59","JDs_Phase2/Aura_Semiconductor_Pvt_Ltd_866_1.html"],
+  ["AuxoAI","AI Engineer","17.1 LPA","2025-11-24","21:37","2025-12-03","23:50","JDs_Phase2/AuxoAI_513_1.html"],
+  ["Avaada Group","Graduate Engineer Trainee - Battery Storage Technology","12.0 LPA","2025-12-11","17:00","2026-01-25","23:59","JDs_Phase2/Avaada_Group_780_1.html"],
+  ["Avaada Group","Gen AI &amp; ML Specialist","20.0 LPA","2025-12-11","17:00","2026-01-25","23:59","JDs_Phase2/Avaada_Group_780_2.html"],
+  ["Averixis Solutions","BDA","12.0 LPA","2026-04-17","17:20","2026-04-19","23:59","JDs_Phase2/Averixis_Solutions_1014_1.html"],
+  ["Aviso Software India LLP (Aviso AI)","Data Scientist","18.0 LPA","2025-11-12","15:59","2025-11-21","10:00","JDs_Phase2/Aviso_Software_India_LLP_(Aviso_AI)_570_1.html"],
+  ["Aviso Software India LLP (Aviso AI)","Software Engineer","18.0 LPA","2025-11-12","15:58","2025-11-21","10:00","JDs_Phase2/Aviso_Software_India_LLP_(Aviso_AI)_570_2.html"],
+  ["Axis Bank","BIU (Business Intelligence Unit)","14.4 LPA","2025-11-10","18:00","2025-11-11","23:59","JDs_Phase2/Axis_Bank_211_5.html"],
+  ["Axis Bank","Risk","14.4 LPA","2025-11-10","18:00","2025-11-11","23:59","JDs_Phase2/Axis_Bank_211_6.html"],
+  ["Axis Bank","Digital Banking","14.4 LPA","2025-11-10","18:00","2025-11-11","23:59","JDs_Phase2/Axis_Bank_211_7.html"],
+  ["Axtria India Pvt Ltd","Analyst","14.5 LPA","2025-12-03","13:38","2025-12-03","23:59","JDs_Phase2/Axtria_India_Pvt_Ltd_283_3.html"],
+  ["Axxela Research &amp; Analytics Private Limited","Trainee Analyst","14.1 LPA","2025-11-02","18:52","2025-11-05","23:59","JDs_Phase2/Axxela_Research_&amp;_Analytics_Private_Limited_58_2.html"],
+  ["Ayna.AI India Consulting Private Limited","Analyst","15.0 LPA","2025-12-05","18:30","2025-12-06","23:59","JDs_Phase2/Ayna.AI_India_Consulting_Private_Limited_748_1.html"],
+  ["BANK OF AMERICA","Sr Tech Analyst (UG)","15.5 LPA","2025-11-26","21:00","2025-11-27","23:59","JDs_Phase2/BANK_OF_AMERICA_251_1.html"],
+  ["BHARAT ELECTRONICS LTD.","PROBATIONARY ENGINEER","12.7 LPA","2025-11-24","15:35","2025-11-25","19:00","JDs_Phase2/BHARAT_ELECTRONICS_LTD._692_1.html"],
+  ["Bajaj Auto Ltd. and Bajaj Auto Technology Ltd.","Flying Start Graduate Trainee Engineer (BATL R&amp;D)","20.7 LPA","2025-11-10","12:16","2025-11-12","22:00","JDs_Phase2/Bajaj_Auto_Ltd._and_Bajaj_Auto_Technology_Ltd._91_3.html"],
+  ["Bajaj Finserv Health Limited","AI Data Scientist","20.0 LPA","2025-12-05","18:45","2025-12-06","23:59","JDs_Phase2/Bajaj_Finserv_Health_Limited_701_1.html"],
+  ["Bandhan Bank","Management Trainee- CAD","14.0 LPA","2025-11-27","21:05","2025-11-29","17:40","JDs_Phase2/Bandhan_Bank_699_2.html"],
+  ["Barclays","SM&amp;D - Graduate Analyst (Electronic Trading Quant)","38.4 LPA","2025-11-06","19:16","2025-11-07","23:59","JDs_Phase2/Barclays_556_1.html"],
+  ["Bayer AG","Graduate Engineering Trainee","18.3 LPA","2026-01-13","16:17","2026-01-14","23:59","JDs_Phase2/Bayer_AG_838_1.html"],
+  ["BeeHyv Software Solutions Pvt Ltd. ​","Developer Trainee","11.0 LPA","2025-12-01","15:19","2025-12-02","23:59","JDs_Phase2/BeeHyv_Software_Solutions_Pvt_Ltd.__&amp;#8203;_390_1.html"],
+  ["Bharat Petroleum Corporation Limited","Management Trainee","Not specified","2025-12-07","15:14","2025-12-25","23:59","JDs_Phase2/Bharat_Petroleum_Corporation_Limited_586_1.html"],
+  ["Biocon Biologics","Principal Scientist/Assistant Manager","7.5 LPA","2025-12-09","00:33","2025-12-09","23:59","JDs_Phase2/Biocon_Biologics_491_1.html"],
+  ["Biocon Biologics","Principal Scientist/Assistant Manager","7.5 LPA","2025-12-09","00:34","2025-12-09","23:59","JDs_Phase2/Biocon_Biologics_491_2.html"],
+  ["Biocon Biologics","Principal Scientist/Assistant Manager","7.5 LPA","2025-12-09","00:31","2025-12-09","23:59","JDs_Phase2/Biocon_Biologics_491_3.html"],
+  ["Biocon Biologics","Principal Scientist / Assistant Manager","7.5 LPA","2025-12-09","00:32","2025-12-09","23:59","JDs_Phase2/Biocon_Biologics_491_4.html"],
+  ["BizAcuity Solutions Pvt Ltd","Software Engineer","10.0 LPA","2025-12-09","00:36","2025-12-09","23:59","JDs_Phase2/BizAcuity_Solutions_Pvt_Ltd_484_1.html"],
+  ["BlaZop India Pvt. Ltd.","Python Developer Data Engineering &amp; Analytics","4.0 LPA","2026-04-18","14:40","2026-04-20","23:59","JDs_Phase2/BlaZop_India_Pvt._Ltd._1002_1.html"],
+  ["BlaZop India Pvt. Ltd.","Full Stack Engineer Angular &amp; Web Technologies","4.0 LPA","2026-04-18","14:40","2026-04-20","23:59","JDs_Phase2/BlaZop_India_Pvt._Ltd._1002_2.html"],
+  ["BlaZop India Pvt. Ltd.","Cloud Engineer","4.0 LPA","2026-04-18","14:40","2026-04-20","23:59","JDs_Phase2/BlaZop_India_Pvt._Ltd._1002_3.html"],
+  ["BlackRock","Analyst","22.0 LPA","2025-11-01","18:00","2025-11-05","10:00","JDs_Phase2/BlackRock_381_1.html"],
+  ["BlackRock","Analyst - Aladdin Engineering","28.0 LPA","2025-11-01","18:00","2025-11-05","10:00","JDs_Phase2/BlackRock_381_2.html"],
+  ["BlackRock","Analyst - Aladdin Wealth tech","28.0 LPA","2025-11-01","18:00","2025-11-05","10:00","JDs_Phase2/BlackRock_381_3.html"],
+  ["Blinkit","Associate Program Manager","17.0 LPA","2025-11-28","15:42","2025-11-28","23:59","JDs_Phase2/Blinkit_721_1.html"],
+  ["Blue Energy Motors","GET","Not specified","2026-03-24","15:15","2026-03-25","15:00","JDs_Phase2/Blue_Energy_Motors_979_1.html"],
+  ["Blue Star India","PGET- Simulation Testing","11.4 LPA","2025-12-08","07:30","2025-12-09","11:59","JDs_Phase2/Blue_Star_India_765_1.html"],
+  ["Blue Star India","PGET- Structural Design","11.4 LPA","2025-12-08","07:24","2025-12-09","11:59","JDs_Phase2/Blue_Star_India_765_2.html"],
+  ["Blue Star India","PGET-Performance Validation","11.4 LPA","2025-12-08","07:30","2025-12-09","11:59","JDs_Phase2/Blue_Star_India_765_3.html"],
+  ["Blue Star India","PGET- System Integrator","11.4 LPA","2025-12-08","07:32","2025-12-09","11:59","JDs_Phase2/Blue_Star_India_765_4.html"],
+  ["Blue Star India","PGET- Reliability","11.4 LPA","2025-12-08","07:33","2025-12-09","11:59","JDs_Phase2/Blue_Star_India_765_5.html"],
+  ["Blue Star India","PGET- Technology","11.4 LPA","2025-12-08","07:30","2025-12-09","11:59","JDs_Phase2/Blue_Star_India_765_6.html"],
+  ["Browserstack","Software Engineer- Backend","25.0 LPA","2025-11-21","23:09","2025-11-23","17:00","JDs_Phase2/Browserstack_646_1.html"],
+  ["Burger Singh","Revenue Analyst","16.0 LPA","2025-11-27","18:17","2025-11-28","08:00","JDs_Phase2/Burger_Singh_710_1.html"],
+  ["CBS Techno Co. Ltd.","Electronics Engineer","5500000 JPY","2025-11-24","21:28","2025-11-26","23:59","JDs_Phase2/CBS_Techno_Co._Ltd._265_3.html"],
+  ["CBS Techno Co. Ltd.","Software Engineer","5500000 JPY","2025-11-24","21:27","2025-11-26","23:59","JDs_Phase2/CBS_Techno_Co._Ltd._265_4.html"],
+  ["CHELLA SOFTWARE PVT LTD","Junior Software Developer","12.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/CHELLA_SOFTWARE_PVT_LTD_499_1.html"],
+  ["CITYMALL","Product Analyst","24.0 LPA","2025-11-21","23:04","2025-11-23","17:00","JDs_Phase2/CITYMALL_389_1.html"],
+  ["COMVIVA-Yabx","Risk and Portfolio management","15.0 LPA","2025-12-04","19:37","2025-12-06","17:00","JDs_Phase2/COMVIVA-Yabx_614_1.html"],
+  ["Cahira Technologies","Scientific Strategy &amp; Communications Specialist (FULLY REMOTE )","12.0 LPA","2025-12-08","07:40","2025-12-08","23:59","JDs_Phase2/Cahira_Technologies_739_1.html"],
+  ["Capillary Technologies","Software Development Engineer","16.0 LPA","2025-11-29","10:48","2025-11-30","23:59","JDs_Phase2/Capillary_Technologies_398_1.html"],
+  ["Capital One","Associate (Software Engineer)","36.5 LPA","2025-10-22","15:00","2025-10-28","16:00","JDs_Phase2/Capital_One_219_1.html"],
+  ["Capital One","Associate - BusinessAnalyst","36.5 LPA","2025-10-22","15:00","2025-10-28","16:00","JDs_Phase2/Capital_One_219_2.html"],
+  ["Cashfree Payments","Process Innovation &amp; Excellence Analyst","23.0 LPA","2025-11-11","13:26","2025-11-15","14:00","JDs_Phase2/Cashfree_Payments_585_1.html"],
+  ["Centre for Development of Telematics","Scientist B","22.4 LPA","2025-11-10","15:53","2025-12-08","15:59","JDs_Phase2/Centre_for_Development_of_Telematics_468_1.html"],
+  ["Cerebras Systems India Private Limited","Member of Technical Staff","35.0 LPA","2025-11-21","23:14","2025-11-23","17:00","JDs_Phase2/Cerebras_Systems_India_Private_Limited_683_1.html"],
+  ["Chariot (chariot.in)","Research Engineer","100.0 LPA","2025-10-16","15:55","2025-10-22","23:59","JDs_Phase2/Chariot_(chariot.in)_349_1.html"],
+  ["Chariot (chariot.in)","Software Engineer/ ML Engineer","50.0 LPA","2025-10-16","15:56","2025-10-22","23:59","JDs_Phase2/Chariot_(chariot.in)_349_2.html"],
+  ["Citi Bank","Credit Risk Analyst","19.0 LPA","2025-11-21","23:02","2025-11-23","17:00","JDs_Phase2/Citi_Bank_340_2.html"],
+  ["Commonwealth Bank of Australia","Graduate Data Scientist","24.9 LPA","2025-11-03","19:00","2025-11-05","23:59","JDs_Phase2/Commonwealth_Bank_of_Australia_405_1.html"],
+  ["Corridor Platforms","Full Stack Developer","40.0 LPA","2025-10-16","15:57","2025-10-19","23:59","JDs_Phase2/Corridor_Platforms_248_1.html"],
+  ["Coupa Software India Pvt. Ltd.","Data Scientist","18.0 LPA","2025-11-10","12:14","2025-11-11","22:00","JDs_Phase2/Coupa_Software_India_Pvt._Ltd._291_3.html"],
+  ["Covvalent","Management Trainee: Business Strategy &amp; Market Research","12.0 LPA","2025-12-03","16:30","2025-12-03","23:50","JDs_Phase2/Covvalent_431_1.html"],
+  ["Covvalent","Management Trainee: R&amp;D","12.0 LPA","2025-12-03","16:23","2025-12-03","23:50","JDs_Phase2/Covvalent_431_2.html"],
+  ["Cracku","JEE Content Manager","10.0 LPA","2026-02-13","15:30","2026-02-14","23:59","JDs_Phase2/Cracku_881_1.html"],
+  ["Cubastion Consulting","GTE","9.6 LPA","2026-03-09","17:12","2026-03-10","17:00","JDs_Phase2/Cubastion_Consulting_911_1.html"],
+  ["Cubastion Consulting Pvt.Ltd.","Graduate Trainee Engineer","9.6 LPA","2026-03-07","16:29","2026-03-08","23:59","JDs_Phase2/Cubastion_Consulting_Pvt.Ltd._170_1.html"],
+  ["D. E. Shaw India","Technology Developer","73.3 LPA","2025-10-09","17:44","2025-10-11","23:59","JDs_Phase2/D._E._Shaw_India_362_1.html"],
+  ["DAERO","Software Engineer (Full Stack)","60.0 LPA","2025-11-26","21:00","2025-12-08","23:59","JDs_Phase2/DAERO_640_1.html"],
+  ["DAERO","Software Engineer (Kotlin / Android)","60.0 LPA","2025-11-26","21:00","2025-12-08","23:59","JDs_Phase2/DAERO_640_2.html"],
+  ["DAERO","Software Engineer (Swift / iOS)","60.0 LPA","2025-11-26","21:00","2025-12-08","23:59","JDs_Phase2/DAERO_640_3.html"],
+  ["DAERO","UI / UX Designer","80.9 LPA","2025-12-08","07:45","2025-12-08","23:59","JDs_Phase2/DAERO_640_4.html"],
+  ["DASSAULT SYSTEMES","R&amp;D Engineer","13.7 LPA","2025-11-26","16:29","2025-11-27","11:59","JDs_Phase2/DASSAULT_SYSTEMES_659_1.html"],
+  ["DATOMS","Backend Developer","12.0 LPA","2025-12-07","15:05","2025-12-07","20:00","JDs_Phase2/DATOMS_689_1.html"],
+  ["DATOMS","Full Stack Developer","12.0 LPA","2025-12-06","11:40","2025-12-06","23:58","JDs_Phase2/DATOMS_689_2.html"],
+  ["DELOITTE TOUCHE TOHMATSU INDIA LLP","Analyst: EAD OIDS ER&amp;I","12.0 LPA","2025-11-19","17:34","2025-11-20","23:59","JDs_Phase2/DELOITTE_TOUCHE_TOHMATSU_INDIA_LLP_481_1.html"],
+  ["DELOITTE TOUCHE TOHMATSU INDIA LLP","Analyst: EAD OIDS-EDUT","12.0 LPA","2025-11-19","17:33","2025-11-20","23:59","JDs_Phase2/DELOITTE_TOUCHE_TOHMATSU_INDIA_LLP_481_2.html"],
+  ["DELOITTE TOUCHE TOHMATSU INDIA LLP","Analyst: Engineering, AI &amp; Data | Agri Solutions | Analyst","12.0 LPA","2025-11-19","17:31","2025-11-20","23:59","JDs_Phase2/DELOITTE_TOUCHE_TOHMATSU_INDIA_LLP_481_5.html"],
+  ["DELOITTE TOUCHE TOHMATSU INDIA LLP","SRT_S&amp;T_Mergers and Acquistion_Analyst","12.0 LPA","2025-11-29","15:45","2025-11-29","23:59","JDs_Phase2/DELOITTE_TOUCHE_TOHMATSU_INDIA_LLP_481_6.html"],
+  ["DENSO","Edge AI &amp; IoT Platform Engineer/Software Engineer","7609784 JPY","2025-10-23","18:22","2025-10-25","23:59","JDs_Phase2/DENSO_333_1.html"],
+  ["DENSO","Software Engineer in AI R&amp;D and Applied Technologies","7609784 JPY","2025-10-23","18:27","2025-10-25","23:59","JDs_Phase2/DENSO_333_4.html"],
+  ["DENSO","SDV Platform Software Engineer","7609784 JPY","2025-10-23","18:29","2025-10-25","23:59","JDs_Phase2/DENSO_333_5.html"],
+  ["DENSO","In-Vehicle Network Software Engineer","7609784 JPY","2025-10-23","18:32","2025-10-25","23:59","JDs_Phase2/DENSO_333_7.html"],
+  ["DENSO","Next Generation automotive SoC Research and Development","7609784 JPY","2025-10-23","18:24","2025-10-25","23:59","JDs_Phase2/DENSO_333_9.html"],
+  ["DP World","Software Development Engineers (SDE)","27.0 LPA","2025-11-02","19:00","2026-01-12","23:59","JDs_Phase2/DP_World_247_1.html"],
+  ["DTDC Express Limited","Management Trainee","22.0 LPA","2025-11-11","13:21","2025-11-13","23:59","JDs_Phase2/DTDC_Express_Limited_539_1.html"],
+  ["Databricks","Software Engineer","75.2 LPA","2025-11-01","18:21","2025-11-03","23:59","JDs_Phase2/Databricks_307_1.html"],
+  ["Databricks","Software Engineer","135879 EURO","2025-11-01","18:21","2025-11-03","23:59","JDs_Phase2/Databricks_307_2.html"],
+  ["Deloitte US India","Analyst","12.0 LPA","2025-11-16","15:15","2025-11-20","17:00","JDs_Phase2/Deloitte_US_India_278_1.html"],
+  ["Deutsche India Private Limited","Analyst","30.1 LPA","2025-10-03","17:00","2025-10-05","23:59","JDs_Phase2/Deutsche_India_Private_Limited_304_1.html"],
+  ["Dezerv Investments Pvt. Ltd.","Software Developer","15.0 LPA","2025-11-13","15:44","2025-11-14","23:59","JDs_Phase2/Dezerv_Investments_Pvt._Ltd._634_1.html"],
+  ["Dezerv Investments Pvt. Ltd.","Associate, Business &amp; New Initiatives","15.0 LPA","2025-11-13","15:43","2025-11-14","23:59","JDs_Phase2/Dezerv_Investments_Pvt._Ltd._634_2.html"],
+  ["Digit Insurance","Engineering Trainee","9.0 LPA","2025-12-08","16:00","2025-12-10","17:00","JDs_Phase2/Digit_Insurance_356_1.html"],
+  ["DoubleTick | QuickSell","Frontend Engineer - SDE 1/SDE 2Backend Engineer - SDE 1/SDE 2","24.0 LPA","2025-11-07","21:00","2025-11-08","23:59","JDs_Phase2/DoubleTick__279_1.html"],
+  ["DoubleTick | QuickSell","Frontend Engineer - SDE 1","18.0 LPA","2025-11-06","11:46","2025-11-08","23:59","JDs_Phase2/DoubleTick__279_2.html"],
+  ["DoubleTick | QuickSell","Frontend Engineer - SDE 2","24.0 LPA","2025-11-06","11:47","2025-11-08","23:59","JDs_Phase2/DoubleTick__279_3.html"],
+  ["DoubleTick | QuickSell","Backend Engineer - SDE 1","18.0 LPA","2025-11-07","21:05","2025-11-08","23:59","JDs_Phase2/DoubleTick__279_4.html"],
+  ["DoubleTick | QuickSell","Backend Engineer - SDE 2","24.0 LPA","2025-11-06","11:48","2025-11-08","23:59","JDs_Phase2/DoubleTick__279_5.html"],
+  ["DoubleTick | QuickSell","Junior Product Designer","16.0 LPA","2025-11-26","21:00","2025-11-27","23:59","JDs_Phase2/DoubleTick__279_6.html"],
+  ["ESDS Software Solution Limited","AI Engineers","15.0 LPA","2025-12-18","18:00","2026-01-30","23:59","JDs_Phase2/ESDS_Software_Solution_Limited_442_1.html"],
+  ["ESRI","Data Scientist I","18.8 LPA","2025-11-02","19:10","2025-11-05","23:59","JDs_Phase2/ESRI_455_1.html"],
+  ["ETERNAL","Data Scientist 1","29.0 LPA","2025-11-28","15:38","2025-11-29","01:15","JDs_Phase2/ETERNAL_189_10.html"],
+  ["ETERNAL","Software Development Engineer","29.0 LPA","2025-11-07","18:00","2025-11-11","19:59","JDs_Phase2/ETERNAL_189_4.html"],
+  ["ETERNAL","Product Analyst","24.0 LPA","2025-11-07","18:00","2025-11-11","19:59","JDs_Phase2/ETERNAL_189_5.html"],
+  ["ETERNAL","IoT Electronics Engineer","29.0 LPA","2025-11-07","18:00","2025-11-11","19:59","JDs_Phase2/ETERNAL_189_8.html"],
+  ["ETERNAL","Business Analyst","18.0 LPA","2025-11-28","12:12","2025-11-28","22:00","JDs_Phase2/ETERNAL_189_9.html"],
+  ["ET Money","SE1","14.0 LPA","2025-12-07","16:12","2025-12-07","23:59","JDs_Phase2/ET_Money_440_1.html"],
+  ["EXL Service","Analytics - Consultant I","15.3 LPA","2025-11-12","19:01","2025-11-14","15:00","JDs_Phase2/EXL_Service_467_1.html"],
+  ["EY Global Delivery Services India LLP","Senior Analyst - Supply Chain Management","17.6 LPA","2025-11-22","23:15","2025-11-24","23:59","JDs_Phase2/EY_Global_Delivery_Services_India_LLP_497_1.html"],
+  ["EY Global Delivery Services India LLP","Senior Analyst - Data Scientist","17.6 LPA","2025-11-22","23:16","2025-11-24","23:59","JDs_Phase2/EY_Global_Delivery_Services_India_LLP_497_2.html"],
+  ["Earthful.me","Founder&#x27;s Office (Growth)","Not specified","2025-12-04","18:02","2025-12-04","23:59","JDs_Phase2/Earthful.me_715_1.html"],
+  ["Earthful.me","Senior Supply Chain Manager","Not specified","2025-12-04","18:02","2025-12-04","23:59","JDs_Phase2/Earthful.me_715_2.html"],
+  ["Ecocipher Energy Private Limited","Mechanical Engineer","12.0 LPA","2026-03-03","09:40","2026-03-04","23:59","JDs_Phase2/Ecocipher_Energy_Private_Limited_913_1.html"],
+  ["Edelweiss Global Markets","Assistant Manager","110.0 LPA","2025-10-13","12:20","2025-10-14","23:59","JDs_Phase2/Edelweiss_Global_Markets_329_1.html"],
+  ["Eigenwave","Software Engineer","60.0 LPA","2025-11-06","13:21","2025-11-10","23:59","JDs_Phase2/Eigenwave_521_1.html"],
+  ["Ema Unlimited","SDE","47.0 LPA","2025-11-03","19:00","2025-11-08","23:59","JDs_Phase2/Ema_Unlimited_296_1.html"],
+  ["Ema Unlimited","ML Engineer","47.0 LPA","2025-11-03","19:00","2025-11-08","23:59","JDs_Phase2/Ema_Unlimited_296_2.html"],
+  ["Ema Unlimited","Associate Project Manager","47.0 LPA","2025-11-25","17:17","2025-11-26","23:59","JDs_Phase2/Ema_Unlimited_296_3.html"],
+  ["Esyasoft Holding","Graduate/Post Graduate Trainee","12.5 LPA","2026-04-18","17:40","2026-04-19","23:59","JDs_Phase2/Esyasoft_Holding_1018_1.html"],
+  ["Eterna Labs","Frontend Developer","40.0 LPA","2025-11-14","12:52","2025-11-20","23:59","JDs_Phase2/Eterna_Labs_322_1.html"],
+  ["Eterna Labs","Backend Developer","40.0 LPA","2025-11-14","12:52","2025-11-20","23:59","JDs_Phase2/Eterna_Labs_322_2.html"],
+  ["Ethos Life","SDE","25.6 LPA","2025-11-11","13:23","2025-11-12","14:00","JDs_Phase2/Ethos_Life_401_1.html"],
+  ["FISCHERJORDAN LLC","Analyst","30.7 LPA","2025-11-01","18:00","2025-11-06","23:59","JDs_Phase2/FISCHERJORDAN_LLC_261_2.html"],
+  ["FISCHERJORDAN LLC","SoftwareEngineer - Frontend Web Developer","31.8 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/FISCHERJORDAN_LLC_261_4.html"],
+  ["FISCHERJORDAN LLC","Embedded Engineer","31.8 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/FISCHERJORDAN_LLC_261_5.html"],
+  ["FISCHERJORDAN LLC","Software Engineer - Backend Web Developer","31.8 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/FISCHERJORDAN_LLC_261_6.html"],
+  ["FLUXION","Mechanical Engineer","16.0 LPA","2026-04-28","16:06","2026-04-30","23:59","JDs_Phase2/FLUXION_1036_1.html"],
+  ["FLUXION","Civil &amp; Structural Engineer","16.0 LPA","2026-04-28","16:07","2026-04-30","23:59","JDs_Phase2/FLUXION_1036_2.html"],
+  ["FLUXION","Electronics Engineer","16.0 LPA","2026-04-28","16:07","2026-04-30","23:59","JDs_Phase2/FLUXION_1036_3.html"],
+  ["FLUXION","Systems Architecture Engineer","16.0 LPA","2026-04-28","16:08","2026-04-30","23:59","JDs_Phase2/FLUXION_1036_4.html"],
+  ["FLUXION","Data Science Engineer","16.0 LPA","2026-04-28","16:09","2026-04-30","23:59","JDs_Phase2/FLUXION_1036_5.html"],
+  ["FLUXION","AI Engineer","16.0 LPA","2026-04-28","16:09","2026-04-30","23:59","JDs_Phase2/FLUXION_1036_6.html"],
+  ["FedEx","Decision Scientist","19.0 LPA","2025-11-13","16:03","2025-11-14","23:59","JDs_Phase2/FedEx_397_1.html"],
+  ["FedEx","Data Engineer","19.0 LPA","2025-11-26","16:00","2025-11-27","16:00","JDs_Phase2/FedEx_397_2.html"],
+  ["FinBox","Software Engineer-Backend","20.1 LPA","2025-11-18","11:35","2025-11-19","22:00","JDs_Phase2/FinBox_254_1.html"],
+  ["FinBox","Data Scientist","20.1 LPA","2025-11-18","11:34","2025-11-19","22:00","JDs_Phase2/FinBox_254_2.html"],
+  ["Flipkart Internet Private Limited","APM 1","26.8 LPA","2025-10-13","11:13","2025-10-20","23:59","JDs_Phase2/Flipkart_Internet_Private_Limited_319_2.html"],
+  ["Flipkart Internet Private Limited","Business Analyst","19.0 LPA","2025-10-27","12:51","2025-11-01","18:45","JDs_Phase2/Flipkart_Internet_Private_Limited_319_3.html"],
+  ["Flipkart Internet Private Limited","UI 1","18.0 LPA","2025-11-19","17:13","2025-11-20","23:59","JDs_Phase2/Flipkart_Internet_Private_Limited_319_4.html"],
+  ["Fractal Analytics","Role: AI Engineer","38.0 LPA","2025-11-11","12:41","2025-11-12","20:00","JDs_Phase2/Fractal_Analytics_615_1.html"],
+  ["Fractal Analytics","AI Research Engineer","38.0 LPA","2025-11-11","15:30","2025-11-12","20:00","JDs_Phase2/Fractal_Analytics_615_2.html"],
+  ["Fractal Analytics","AI Research Scientist","38.0 LPA","2025-11-11","15:30","2025-11-12","20:00","JDs_Phase2/Fractal_Analytics_615_3.html"],
+  ["FriendLoan Technologies","Software Development Engineer","13.0 LPA","2026-03-03","09:36","2026-03-05","23:59","JDs_Phase2/FriendLoan_Technologies_914_1.html"],
+  ["Futures First","Trainee - International Markets","17.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Futures_First_589_1.html"],
+  ["GKN Aerospace Engine Systems India Pvt Ltd","Trainee Technology","10.5 LPA","2025-12-04","19:00","2025-12-05","21:00","JDs_Phase2/GKN_Aerospace_Engine_Systems_India_Pvt_Ltd_412_1.html"],
+  ["GNA Energy Private Limited","Data and Machine Learning Engineer","14.0 LPA","2026-03-25","12:45","2026-03-26","23:59","JDs_Phase2/GNA_Energy_Private_Limited_324_1.html"],
+  ["GOLDMAN SACHS","Software Engineering | Analyst","36.5 LPA","2025-11-10","12:12","2025-11-11","22:00","JDs_Phase2/GOLDMAN_SACHS_600_1.html"],
+  ["GSPANN Technologies (India) Pvt Ltd","Software Engineer Trainee","11.0 LPA","2026-01-19","15:57","2026-01-20","23:59","JDs_Phase2/GSPANN_Technologies_(India)_Pvt_Ltd_680_1.html"],
+  ["Geeks of Gurukul","Software Developer &amp; Professor","10.0 LPA","2026-04-10","12:06","2026-04-13","23:59","JDs_Phase2/Geeks_of_Gurukul_1007_1.html"],
+  ["Genpact","Management Trainee / Business Analyst 4A","19.7 LPA","2025-11-26","19:00","2025-11-27","23:59","JDs_Phase2/Genpact_504_1.html"],
+  ["GigaML","Advance Software Engineer","Not specified","2025-10-31","19:16","2025-11-03","15:00","JDs_Phase2/GigaML_269_2.html"],
+  ["GigaML","Software Engineer","45.0 LPA","2025-10-31","19:15","2025-11-03","15:00","JDs_Phase2/GigaML_269_3.html"],
+  ["GigaML","Software Engineer (San Francisco)","300000 USD","2025-10-31","19:13","2025-11-03","15:00","JDs_Phase2/GigaML_269_4.html"],
+  ["Glean Search Technologies India Pvt. Ltd","Software Engineer (India)","72.9 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Glean_Search_Technologies_India_Pvt._Ltd_37_3.html"],
+  ["Glean Search Technologies India Pvt. Ltd","Software Engineer (US)","190000 USD","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Glean_Search_Technologies_India_Pvt._Ltd_37_4.html"],
+  ["Go Digital Technology Consulting LLP","Software Engineer/ Data Scientist/ Data Engineer","20.0 LPA","2025-11-24","21:34","2025-11-27","22:00","JDs_Phase2/Go_Digital_Technology_Consulting_LLP_533_1.html"],
+  ["Go Digital Technology Consulting LLP","Data Consultant","20.0 LPA","2025-11-28","10:41","2025-11-28","23:59","JDs_Phase2/Go_Digital_Technology_Consulting_LLP_533_2.html"],
+  ["Go Digital Technology Consulting LLP","Data Engineer/ Data Scientist/ Software Engineer","6.0 LPA","2026-03-03","09:41","2026-03-04","23:59","JDs_Phase2/Go_Digital_Technology_Consulting_LLP_533_3.html"],
+  ["Google","Software Engineer, University Graduate","23.1 LPA","2025-10-30","16:00","2025-11-01","23:59","JDs_Phase2/Google_60_3.html"],
+  ["Google","Silicon Engineer, University Graduate 2026","25.2 LPA","2026-02-13","10:10","2026-02-13","22:00","JDs_Phase2/Google_60_5.html"],
+  ["Graviton Research Capital","Software Engineer - India","90.0 LPA","2025-10-06","16:49","2025-10-08","22:00","JDs_Phase2/Graviton_Research_Capital_318_1.html"],
+  ["Graviton Research Capital","Quantitative Researcher - India","90.0 LPA","2025-10-06","16:50","2025-10-08","22:00","JDs_Phase2/Graviton_Research_Capital_318_2.html"],
+  ["Gravity Facility Management Solutions Pvt. Ltd.","Assistant Manager- Technical (Electrical)","10.0 LPA","2025-12-05","17:25","2026-01-09","20:59","JDs_Phase2/Gravity_Facility_Management_Solutions_Pvt._Ltd._644_1.html"],
+  ["Gravity Facility Management Solutions Pvt. Ltd.","Assistant Manager- Technical (Mechanical)","10.0 LPA","2025-12-05","17:19","2026-01-09","20:59","JDs_Phase2/Gravity_Facility_Management_Solutions_Pvt._Ltd._644_2.html"],
+  ["Gravity Facility Management Solutions Pvt. Ltd.","Assistant Manager- Automobile","10.0 LPA","2025-12-05","17:18","2026-01-09","20:59","JDs_Phase2/Gravity_Facility_Management_Solutions_Pvt._Ltd._644_3.html"],
+  ["Gravity Facility Management Solutions Pvt. Ltd.","Assistant Manager- Civil","10.0 LPA","2025-12-05","17:19","2026-01-09","23:59","JDs_Phase2/Gravity_Facility_Management_Solutions_Pvt._Ltd._644_4.html"],
+  ["Gravity Facility Management Solutions Pvt. Ltd.","Assistant Manager- Computer Science with Cyber Security &amp; Artificial Intelligence","10.0 LPA","2025-12-05","17:19","2026-01-09","20:59","JDs_Phase2/Gravity_Facility_Management_Solutions_Pvt._Ltd._644_5.html"],
+  ["Greaves Cotton Limited","Graduate Engineer Trainee","8.1 LPA","2025-12-09","00:39","2025-12-09","23:59","JDs_Phase2/Greaves_Cotton_Limited_298_1.html"],
+  ["GrowthJockey Pvt. Ltd","Product Associate","6.0 LPA","2025-12-09","18:25","2025-12-10","11:59","JDs_Phase2/GrowthJockey_Pvt._Ltd_66_1.html"],
+  ["GrowthJockey Pvt. Ltd","Digital Specialist","8.0 LPA","2025-12-09","18:23","2025-12-10","12:00","JDs_Phase2/GrowthJockey_Pvt._Ltd_66_2.html"],
+  ["GrowthJockey Pvt. Ltd","Venture Architect","8.0 LPA","2025-12-08","18:00","2025-12-10","12:00","JDs_Phase2/GrowthJockey_Pvt._Ltd_66_3.html"],
+  ["GrowthJockey Pvt. Ltd","UI/UX Designer","8.0 LPA","2025-12-09","18:19","2025-12-10","12:00","JDs_Phase2/GrowthJockey_Pvt._Ltd_66_4.html"],
+  ["GrowthJockey Pvt. Ltd","Software Development Engineer (SDE)","10.0 LPA","2025-12-09","18:20","2025-12-10","11:59","JDs_Phase2/GrowthJockey_Pvt._Ltd_66_5.html"],
+  ["Guardinger Advanced Technologies Private Limited","Data Scientist","12.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Guardinger_Advanced_Technologies_Private_Limited_526_2.html"],
+  ["HCLSoftware","Senior Software Engineer II - Full Stack Developer","22.0 LPA","2026-03-07","16:25","2026-03-08","23:59","JDs_Phase2/HCLSoftware_925_1.html"],
+  ["HCLSoftware","Agentic AI Engineer II","18.0 LPA","2026-04-06","20:45","2026-04-08","18:00","JDs_Phase2/HCLSoftware_925_2.html"],
+  ["HCLSoftware","Generative AI Engineer II","18.0 LPA","2026-04-06","20:47","2026-04-08","18:00","JDs_Phase2/HCLSoftware_925_3.html"],
+  ["HCLSoftware","AI Research Analyst","18.0 LPA","2026-04-06","20:47","2026-04-08","18:00","JDs_Phase2/HCLSoftware_925_4.html"],
+  ["HCLSoftware","AI Developer","18.0 LPA","2026-04-06","20:45","2026-04-08","18:00","JDs_Phase2/HCLSoftware_925_5.html"],
+  ["HCP Plastene Bulkpack Limited","GET","10.0 LPA","2025-12-09","00:43","2025-12-09","23:59","JDs_Phase2/HCP_Plastene_Bulkpack_Limited_613_1.html"],
+  ["HPE","Engineer","17.5 LPA","2025-11-26","21:00","2025-12-07","23:59","JDs_Phase2/HPE_675_1.html"],
+  ["Harness","Software Engineer","83.3 LPA","2025-11-02","19:10","2025-11-05","23:59","JDs_Phase2/Harness_475_1.html"],
+  ["Havells India Limited","PGET-IoT","18.0 LPA","2025-11-10","16:27","2025-11-11","23:59","JDs_Phase2/Havells_India_Limited_380_3.html"],
+  ["HiLabs","Software Development Engineer","25.8 LPA","2025-10-31","16:00","2025-11-03","10:00","JDs_Phase2/HiLabs_373_1.html"],
+  ["HiLabs","Data Scientist","25.8 LPA","2025-10-31","14:59","2025-11-03","10:00","JDs_Phase2/HiLabs_373_2.html"],
+  ["HiLabs","Associate Product Manager","25.8 LPA","2025-10-31","14:50","2025-11-03","10:00","JDs_Phase2/HiLabs_373_3.html"],
+  ["Honda Motorcycle and Scooter India Pvt. Ltd.","Executive Trainee","10.6 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Honda_Motorcycle_and_Scooter_India_Pvt._Ltd._407_1.html"],
+  ["IBM India","Hardware Engineer","24.0 LPA","2025-11-02","19:00","2025-11-03","23:59","JDs_Phase2/IBM_India_266_2.html"],
+  ["IBM India","Software Engineer","24.0 LPA","2025-11-02","19:00","2025-11-03","23:59","JDs_Phase2/IBM_India_266_3.html"],
+  ["ICICI Bank Ltd.","Manager 1","18.0 LPA","2025-11-02","19:25","2025-11-05","23:59","JDs_Phase2/ICICI_Bank_Ltd._202_2.html"],
+  ["ICICI Lombard","Actuarial Analyst","12.7 LPA","2025-12-03","16:30","2025-12-03","23:50","JDs_Phase2/ICICI_Lombard_698_1.html"],
+  ["ICICI Prudential Life Insurance Co. Ltd.","Business Associate","18.0 LPA","2025-12-14","21:49","2025-12-22","23:59","JDs_Phase2/ICICI_Prudential_Life_Insurance_Co._Ltd._788_1.html"],
+  ["ICICI Securities","Management Trainee","18.0 LPA","2025-11-18","21:16","2025-11-20","10:00","JDs_Phase2/ICICI_Securities_415_1.html"],
+  ["IDFC FIRST Bank","Associate Data Analyst","20.0 LPA","2025-11-10","16:22","2025-11-11","23:59","JDs_Phase2/IDFC_FIRST_Bank_549_1.html"],
+  ["IDFC FIRST Bank","Associate Data Scientist","24.0 LPA","2025-11-10","16:23","2025-11-11","23:59","JDs_Phase2/IDFC_FIRST_Bank_549_2.html"],
+  ["ITC Limited","Assistant, Technical (Under Training)","31.7 LPA","2025-11-21","11:30","2025-11-23","11:59","JDs_Phase2/ITC_Limited_116_2.html"],
+  ["ITS Planners and Engineers Private Limited","Full Stack","8.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/ITS_Planners_and_Engineers_Private_Limited_438_1.html"],
+  ["ITS Planners and Engineers Private Limited","Back-end Development","8.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/ITS_Planners_and_Engineers_Private_Limited_438_2.html"],
+  ["ITS Planners and Engineers Private Limited","Mobile Application Developer","8.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/ITS_Planners_and_Engineers_Private_Limited_438_3.html"],
+  ["ITS Planners and Engineers Private Limited","Network Infra","8.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/ITS_Planners_and_Engineers_Private_Limited_438_4.html"],
+  ["IdeaForge Technology Pvt. Ltd","Power Electronics","17.0 LPA","2025-11-24","11:37","2025-11-28","23:59","JDs_Phase2/IdeaForge_Technology_Pvt._Ltd_655_1.html"],
+  ["IdeaForge Technology Pvt. Ltd","V&amp;V Hardware","9.0 LPA","2025-11-24","11:38","2025-11-28","23:59","JDs_Phase2/IdeaForge_Technology_Pvt._Ltd_655_2.html"],
+  ["IdeaForge Technology Pvt. Ltd","R&amp;D Software","17.0 LPA","2025-11-28","10:40","2025-11-28","23:59","JDs_Phase2/IdeaForge_Technology_Pvt._Ltd_655_3.html"],
+  ["IdeaForge Technology Pvt. Ltd","Control Systems Engineer - UAV and Payload Development","17.0 LPA","2025-11-28","10:44","2025-11-28","23:59","JDs_Phase2/IdeaForge_Technology_Pvt._Ltd_655_4.html"],
+  ["Impact Analytics","Engineer CTOs Office (AI &amp; Advanced Computing)","32.0 LPA","2025-11-19","21:02","2025-11-27","16:00","JDs_Phase2/Impact_Analytics_494_1.html"],
+  ["InMobi Technologies Pvt Ltd","Software Development Engineer 1","39.0 LPA","2025-10-13","12:23","2025-10-23","23:59","JDs_Phase2/InMobi_Technologies_Pvt_Ltd_239_1.html"],
+  ["Incanus technologies private limited","Software development engineer","20.0 LPA","2025-11-10","16:08","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_1.html"],
+  ["Incanus technologies private limited","Subject Matter Experts - Devops","12.0 LPA","2025-11-10","16:16","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_10.html"],
+  ["Incanus technologies private limited","Subject Matter Experts - Data Engineering","12.0 LPA","2025-11-10","16:17","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_11.html"],
+  ["Incanus technologies private limited","Subject Matter Experts - AIML","12.0 LPA","2025-11-10","16:17","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_12.html"],
+  ["Incanus technologies private limited","Associate Product Manager","15.0 LPA","2025-11-10","16:09","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_2.html"],
+  ["Incanus technologies private limited","Associate Program Manager","12.0 LPA","2025-11-10","16:10","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_3.html"],
+  ["Incanus technologies private limited","Product Designer","17.0 LPA","2025-11-10","16:11","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_4.html"],
+  ["Incanus technologies private limited","Growth Associate","12.0 LPA","2025-11-10","16:12","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_5.html"],
+  ["Incanus technologies private limited","Subject Matter Experts","12.0 LPA","2025-11-10","16:19","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_6.html"],
+  ["Incanus technologies private limited","Subject Matter Experts - Web Dev","12.0 LPA","2025-11-10","16:13","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_7.html"],
+  ["Incanus technologies private limited","Subject Matter Experts - Maths","12.0 LPA","2025-11-10","16:14","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_8.html"],
+  ["Incanus technologies private limited","Subject Matter Experts - DSA","12.0 LPA","2025-11-10","16:15","2025-11-12","17:00","JDs_Phase2/Incanus_technologies_private_limited_459_9.html"],
+  ["IndoAI Technologies Pvt. Ltd.","AI / ML engineer","12.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/IndoAI_Technologies_Pvt._Ltd._295_1.html"],
+  ["Indus Insights","Associate","21.4 LPA","2025-10-13","12:22","2025-10-26","14:00","JDs_Phase2/Indus_Insights_392_1.html"],
+  ["Infineon Technologies","Engineer","22.5 LPA","2025-11-10","16:01","2025-11-11","17:00","JDs_Phase2/Infineon_Technologies_275_1.html"],
+  ["Infineon Technologies","Junior Systems &amp; Performance Engineer","22.5 LPA","2025-11-10","16:01","2025-11-11","17:00","JDs_Phase2/Infineon_Technologies_275_2.html"],
+  ["Infinia Technologies","Data Analyst - FutureAI","30.0 LPA","2026-05-05","09:52","2026-05-05","23:59","JDs_Phase2/Infinia_Technologies_1046_1.html"],
+  ["Infinia Technologies","Data Engineer","35.0 LPA","2026-05-05","09:52","2026-05-05","23:59","JDs_Phase2/Infinia_Technologies_1046_2.html"],
+  ["Info Edge India Limited","Data Scientist","29.0 LPA","2025-11-03","12:26","2025-11-05","23:59","JDs_Phase2/Info_Edge_India_Limited_77_3.html"],
+  ["Infocom Network Pvt. Ltd.","Junior Product Manager","9.0 LPA","2025-12-06","18:05","2025-12-07","11:59","JDs_Phase2/Infocom__Network_Pvt._Ltd._566_2.html"],
+  ["Infosys Ltd","Specialist Programmer Trainee L2","16.0 LPA","2025-11-25","17:14","2025-11-26","09:59","JDs_Phase2/Infosys_Ltd_672_1.html"],
+  ["Infosys Ltd","Specialist Programmer Trainee L1","10.0 LPA","2025-11-25","17:15","2025-11-26","09:59","JDs_Phase2/Infosys_Ltd_672_2.html"],
+  ["Infosys Ltd","Specialist Programmer Trainee L3","21.0 LPA","2025-11-25","17:13","2025-11-26","09:59","JDs_Phase2/Infosys_Ltd_672_3.html"],
+  ["Innovaccer Analytics","Senior Associate- Marketing","18.0 LPA","2025-11-26","18:40","2025-11-27","23:00","JDs_Phase2/Innovaccer_Analytics_700_1.html"],
+  ["Inspira Enterprise","Trainee Engineer","10.0 LPA","2026-04-14","09:38","2026-04-16","23:59","JDs_Phase2/Inspira_Enterprise_1003_1.html"],
+  ["Insurity Solutions India Private Limited","Software Engineer","32.0 LPA","2025-11-01","18:00","2025-11-09","16:00","JDs_Phase2/Insurity_Solutions_India_Private_Limited_145_3.html"],
+  ["Intech Organics Limited","Graduate Engineer Trainees (GET)","15.0 LPA","2025-12-04","19:00","2025-12-15","12:00","JDs_Phase2/Intech_Organics_Limited_522_1.html"],
+  ["Intel India Ltd.","Hardware Engineer","20.0 LPA","2025-11-02","19:00","2025-11-05","23:59","JDs_Phase2/Intel_India_Ltd._249_2.html"],
+  ["Intel India Ltd.","Yield Engineer","20.0 LPA","2025-11-02","19:00","2025-11-06","19:30","JDs_Phase2/Intel_India_Ltd._249_6.html"],
+  ["Intellimation.Ai","Algorithm Development Engineer Graph &amp; Entity Intelligence Platform","16.0 LPA","2025-12-06","12:19","2025-12-07","23:59","JDs_Phase2/Intellimation.Ai_243_2.html"],
+  ["Interview Kickstart","Assistant Manager, Category","14.0 LPA","2025-12-18","15:49","2025-12-22","13:59","JDs_Phase2/Interview_Kickstart_790_1.html"],
+  ["IvyCap Ventures","Investment Analyst","21.0 LPA","2025-11-02","18:50","2025-11-06","21:00","JDs_Phase2/IvyCap_Ventures_117_2.html"],
+  ["Ixana","IC Design Engineer I","34.8 LPA","2025-10-22","15:00","2025-10-26","11:59","JDs_Phase2/Ixana_255_1.html"],
+  ["Ixana","Silicon Engineer","34.8 LPA","2025-10-22","15:00","2025-10-26","11:59","JDs_Phase2/Ixana_255_2.html"],
+  ["Ixana","Jr Silicon Engineer III","28.8 LPA","2025-10-22","15:00","2025-10-26","11:59","JDs_Phase2/Ixana_255_3.html"],
+  ["Ixana","IC Design Engineer II","36.8 LPA","2025-10-22","15:00","2025-10-26","11:59","JDs_Phase2/Ixana_255_4.html"],
+  ["Ixana","Embedded Software Engineer","34.8 LPA","2025-10-22","15:00","2025-10-26","11:59","JDs_Phase2/Ixana_255_5.html"],
+  ["JARO EDUCATION","Business/Research Analyst","15.0 LPA","2026-02-24","20:00","2026-02-26","11:59","JDs_Phase2/JARO_EDUCATION_905_1.html"],
+  ["JAVIS","Software Development Engineer I (Backend Java)","30.0 LPA","2025-11-19","15:47","2025-11-19","23:59","JDs_Phase2/JAVIS_561_1.html"],
+  ["JAVIS","Data Engineer I","30.0 LPA","2025-11-19","15:47","2025-11-19","23:59","JDs_Phase2/JAVIS_561_2.html"],
+  ["JAVIS","Agentic AI Engineer I","40.0 LPA","2025-11-19","15:48","2025-11-19","23:59","JDs_Phase2/JAVIS_561_3.html"],
+  ["JAVIS","Voice AI Engineer I","40.0 LPA","2025-11-19","15:49","2025-11-19","23:59","JDs_Phase2/JAVIS_561_4.html"],
+  ["JAVIS","Customer Success Manager I","20.0 LPA","2025-11-19","15:44","2025-11-19","23:59","JDs_Phase2/JAVIS_561_5.html"],
+  ["JAVIS","Research Engineer I","40.0 LPA","2025-11-19","15:45","2025-11-19","23:59","JDs_Phase2/JAVIS_561_6.html"],
+  ["JAVIS","Machine Learning Engineer I (Vision AI)","30.0 LPA","2025-11-19","15:46","2025-11-19","23:59","JDs_Phase2/JAVIS_561_7.html"],
+  ["JIGSERV","Artificial Intelligence and Digital Marketing","6.0 LPA","2026-03-24","10:55","2026-03-25","23:59","JDs_Phase2/JIGSERV_971_1.html"],
+  ["JPMorganChase","Full time Analyst - CIB Research &amp; Analytics Program Global Research","32.8 LPA","2025-10-31","19:10","2025-11-05","23:59","JDs_Phase2/JPMorganChase_20_4.html"],
+  ["JPMorganChase","2026 Full-time Data Science Analyst Program","38.5 LPA","2025-10-31","19:08","2025-11-05","23:59","JDs_Phase2/JPMorganChase_20_5.html"],
+  ["Japan Meteorological Corporation","AI engineer/Data Scientist","Not specified","2025-11-26","21:00","2025-11-29","16:59","JDs_Phase2/Japan_Meteorological_Corporation_635_1.html"],
+  ["Jindal Stainless Steel","GET","10.0 LPA","2026-01-11","16:58","2026-01-11","23:59","JDs_Phase2/Jindal_Stainless_Steel_830_1.html"],
+  ["Jindal Steel","GET","9.0 LPA","2026-01-19","16:00","2026-01-21","17:00","JDs_Phase2/Jindal_Steel_829_1.html"],
+  ["Jio Financial Services Limited","Trainee","18.0 LPA","2026-01-06","15:16","2026-01-09","16:00","JDs_Phase2/Jio_Financial_Services_Limited_827_1.html"],
+  ["Jumbotail Technologies","Graduate Leaders Program - Level 1 (in 6 functions) 1. Category Management2. Supply Chain Planning &amp;\n            Design3.Customer Growth4. Retail Operations Management5. Decision Science6. Technology","8.7 LPA","2025-12-07","18:04","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_2.html"],
+  ["Jumbotail Technologies","Category Management","8.7 LPA","2025-12-07","17:56","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_3.html"],
+  ["Jumbotail Technologies","Supply Chain Planning &amp; Design","8.7 LPA","2025-12-07","17:58","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_4.html"],
+  ["Jumbotail Technologies","Decision Science","8.7 LPA","2025-12-07","17:59","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_5.html"],
+  ["Jumbotail Technologies","Retail Operations Management","8.7 LPA","2025-12-07","17:54","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_6.html"],
+  ["Jumbotail Technologies","Customer Growth- Planning &amp; Design","8.7 LPA","2025-12-07","18:00","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_7.html"],
+  ["Jumbotail Technologies","Technology","8.7 LPA","2025-12-07","18:03","2025-12-08","23:59","JDs_Phase2/Jumbotail_Technologies_386_8.html"],
+  ["Jupiter Money","SDE 1","35.0 LPA","2025-11-03","19:49","2025-11-08","23:59","JDs_Phase2/Jupiter_Money_277_1.html"],
+  ["Juspay Technologies Pvt Ltd","Software Development Engineer - R&amp;D","32.0 LPA","2025-11-14","12:54","2025-11-17","23:59","JDs_Phase2/Juspay_Technologies_Pvt_Ltd_477_1.html"],
+  ["Juspay Technologies Pvt Ltd","Software Development Engineer","27.0 LPA","2025-11-14","12:55","2025-11-17","23:59","JDs_Phase2/Juspay_Technologies_Pvt_Ltd_477_2.html"],
+  ["KLA","Algorithm Research &amp; Development Engineer","42.0 LPA","2025-11-26","21:00","2025-11-29","21:59","JDs_Phase2/KLA_50_4.html"],
+  ["Kotak Mahindra Bank Ltd.","Data Scientist and Data Analyst role","18.0 LPA","2025-11-06","18:00","2025-11-08","23:59","JDs_Phase2/Kotak_Mahindra_Bank_Ltd._325_1.html"],
+  ["L&amp;T Finance","GET Analytics / AI / ML","12.5 LPA","2025-11-11","20:37","2025-11-12","23:59","JDs_Phase2/L&amp;T_Finance_303_3.html"],
+  ["L&amp;T Finance","Graduate Engineer Trainee-Core IT/ IT Engineering","12.5 LPA","2025-11-27","19:35","2025-11-28","23:59","JDs_Phase2/L&amp;T_Finance_303_4.html"],
+  ["LAT Aerospace","Engineer","28.0 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/LAT_Aerospace_181_2.html"],
+  ["LTIMindtree","Data Engineer - B.E./BTech","12.5 LPA","2025-12-04","15:50","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_1.html"],
+  ["LTIMindtree","RCG AI Specialist BTech","12.5 LPA","2025-12-04","15:30","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_11.html"],
+  ["LTIMindtree","SAP AI &amp; Cloud Based Solutions BTech","12.5 LPA","2025-12-04","15:17","2025-12-05","22:59","JDs_Phase2/LTIMindtree_660_13.html"],
+  ["LTIMindtree","Solution Architect","12.5 LPA","2025-12-04","15:20","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_15.html"],
+  ["LTIMindtree","AI System/Solution developer","12.5 LPA","2025-12-04","15:20","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_16.html"],
+  ["LTIMindtree","Research Engineer(AI Research)","12.5 LPA","2025-12-04","15:18","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_17.html"],
+  ["LTIMindtree","Business Analyst/Domain Consultant","12.5 LPA","2025-12-04","15:20","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_18.html"],
+  ["LTIMindtree","Research Engineer (AI Research)","12.5 LPA","2026-03-17","17:45","2026-03-19","16:00","JDs_Phase2/LTIMindtree_660_19.html"],
+  ["LTIMindtree","Research Engineer Evangelization (BTech)","12.5 LPA","2025-12-04","15:35","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_3.html"],
+  ["LTIMindtree","Research Engineer - IPCOE BTech","12.5 LPA","2025-12-04","15:35","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_5.html"],
+  ["LTIMindtree","Insurance Consulting AI Engineer BTech","12.5 LPA","2025-12-04","15:33","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_7.html"],
+  ["LTIMindtree","Interactive AI Engineer BTech","12.5 LPA","2025-12-04","15:31","2025-12-05","23:59","JDs_Phase2/LTIMindtree_660_9.html"],
+  ["LYRIC","Associate Supply Chain Consultant","27.6 LPA","2025-11-28","19:46","2025-11-29","11:59","JDs_Phase2/LYRIC_738_1.html"],
+  ["LYRIC","SDE1","30.0 LPA","2025-11-28","19:45","2025-11-29","17:40","JDs_Phase2/LYRIC_738_2.html"],
+  ["Landeed (John Salt Pvt Limited)","Founding FullStack Engineer","160.0 LPA","2025-10-16","15:59","2025-10-19","23:59","JDs_Phase2/Landeed_(John_Salt_Pvt_Limited)_300_1.html"],
+  ["Larsen and Toubro Limited","MT","12.5 LPA","2025-11-26","10:00","2025-11-27","23:59","JDs_Phase2/Larsen_and_Toubro_Limited_411_1.html"],
+  ["Larsen and Toubro Limited","Management Trainee","12.5 LPA","2026-01-19","16:05","2026-01-21","23:59","JDs_Phase2/Larsen_and_Toubro_Limited_411_3.html"],
+  ["Lets Transport","Management Trainee","12.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Lets_Transport_134_1.html"],
+  ["Linde","PED (Project Engineering Division) GET","7.5 LPA","2025-12-06","00:00","2025-12-07","17:59","JDs_Phase2/Linde_544_2.html"],
+  ["Loyalty Juggernaut Inc.","Product Engineer","12.0 LPA","2025-12-08","07:56","2025-12-08","23:59","JDs_Phase2/Loyalty_Juggernaut_Inc._742_1.html"],
+  ["MAQ Software","Software Engineer 1","13.0 LPA","2025-12-04","12:53","2025-12-04","17:00","JDs_Phase2/MAQ_Software_617_1.html"],
+  ["MONEYVIEW","Business Analyst","25.0 LPA","2025-11-19","18:00","2025-11-20","23:59","JDs_Phase2/MONEYVIEW_639_1.html"],
+  ["MONEYVIEW","Data Scientist","25.0 LPA","2025-11-19","18:01","2025-11-20","23:59","JDs_Phase2/MONEYVIEW_639_2.html"],
+  ["MPHASIS","Senior Data Scientist","11.0 LPA","2025-12-07","15:16","2026-01-10","23:59","JDs_Phase2/MPHASIS_449_2.html"],
+  ["MPHASIS","Senior Software Engineer","11.0 LPA","2025-12-07","15:17","2026-01-10","23:59","JDs_Phase2/MPHASIS_449_3.html"],
+  ["MPHASIS","Senior Software Engineer","11.0 LPA","2025-12-07","15:18","2026-01-10","23:59","JDs_Phase2/MPHASIS_449_4.html"],
+  ["MPHASIS","Developer - SSE","11.0 LPA","2025-12-09","18:18","2026-01-10","11:59","JDs_Phase2/MPHASIS_449_5.html"],
+  ["MPHASIS","Gen AI - Senior Software Engineer","11.0 LPA","2026-01-09","21:29","2026-01-27","23:59","JDs_Phase2/MPHASIS_449_6.html"],
+  ["Madura Coats Private Limited","Management Trainee","14.6 LPA","2025-12-08","16:02","2025-12-09","18:00","JDs_Phase2/Madura_Coats_Private_Limited_367_1.html"],
+  ["Mahindra and Mahindra AFS","Graduate Engineer Trainee (GET)","8.0 LPA","2026-04-02","22:00","2026-04-04","23:59","JDs_Phase2/Mahindra_and_Mahindra_AFS_990_1.html"],
+  ["Mastercard","Associate Analyst, Advanced AnalyticsRole OverviewWe are looking for a dynamic and motivated individual to\n            join our team as anAssociate Analyst, working at the intersection of Data Analytics, Business Strategy,and\n            Product Management. This role is ideal for someone passionate aboutleveraging data and emerging technologies\n            like Generative AI and Machine Learningto drive innovation, optimize performance, and shape product\n            direction. You willwork closely with cross-functional teams to analyze large datasets, extractactionable\n            insights, and contribute to the development of scalable, AI-poweredsolutions that address real-world\n            business challenges.Our team culture is rooted in curiosity, collaboration, and continuous learning.\n            Weencourage experimentation, value diverse perspectives, and support each other insolving complex problems.\n            Whether you&#x27;re building your first dashboard or exploringthe potential of agentic AI, you&#x27;ll be\n            surrounded by passionate teammatescommitted to making an impacttogether.","20.4 LPA","2025-10-30","12:00","2025-11-01","21:30","JDs_Phase2/Mastercard_190_3.html"],
+  ["Mastercard","Software EngineerRole DescriptionAs a Software Engineer I, you will have the opportunity to: write\n            high-quality code with a focus on security, design, and maintainability. contribute to all phases of\n            software development from design through rollout. find real-life solutions for our clients and the world.","20.4 LPA","2025-10-30","12:01","2025-11-01","21:30","JDs_Phase2/Mastercard_190_4.html"],
+  ["MathWorks India Private Limited","Associate(Bachelors) in Engineering Development Group","26.6 LPA","2025-10-23","19:00","2025-10-25","23:59","JDs_Phase2/MathWorks_India_Private_Limited_210_3.html"],
+  ["Maven Magnet","Data Scientist","Not specified","2025-12-05","00:45","2025-12-07","18:59","JDs_Phase2/Maven_Magnet_161_1.html"],
+  ["Maven Magnet","Associate Research Strategist","Not specified","2025-12-05","00:44","2025-12-07","18:59","JDs_Phase2/Maven_Magnet_161_2.html"],
+  ["Maven Magnet","Data Scientist (M.tech)","8.0 LPA","2025-12-05","00:44","2025-12-07","18:59","JDs_Phase2/Maven_Magnet_161_3.html"],
+  ["McDonalds (Westlife Foodworld Pvt Ltd)","Food Processing Researcher","8.0 LPA","2025-12-01","11:45","2025-12-02","23:59","JDs_Phase2/McDonalds_(Westlife_Foodworld_Pvt_Ltd)_379_1.html"],
+  ["McKinsey &amp; Company","Business Analyst","21.5 LPA","2025-11-06","18:00","2025-11-08","23:59","JDs_Phase2/McKinsey_&amp;_Company_445_1.html"],
+  ["Media.net","Sr. Product Analyst","21.0 LPA","2025-12-03","18:32","2025-12-04","01:59","JDs_Phase2/Media.net_70_2.html"],
+  ["Meesho Limited","Software Development Engineer - I","22.0 LPA","2025-10-22","15:00","2025-10-24","23:59","JDs_Phase2/Meesho_Limited_294_1.html"],
+  ["Meesho Limited","Senior Associate - Business Management","17.2 LPA","2025-10-22","15:00","2025-10-24","23:59","JDs_Phase2/Meesho_Limited_294_2.html"],
+  ["Meesho Limited","Data Scientist I","24.0 LPA","2025-10-22","15:00","2025-10-24","23:59","JDs_Phase2/Meesho_Limited_294_3.html"],
+  ["Mercedes Benz","Engineer Trainee","12.0 LPA","2025-11-27","21:58","2025-11-29","17:00","JDs_Phase2/Mercedes_Benz_454_1.html"],
+  ["Microland Ltd","Engineering Trainee","10.0 LPA","2025-12-18","18:00","2025-12-25","23:59","JDs_Phase2/Microland_Ltd_591_1.html"],
+  ["Micron","DDEG_(Design &amp; Verification )","31.1 LPA","2026-05-01","14:10","2026-05-01","20:00","JDs_Phase2/Micron_1044_1.html"],
+  ["Microsoft","Software Engineering","56.8 LPA","2025-11-02","18:00","2025-11-05","23:59","JDs_Phase2/Microsoft_487_1.html"],
+  ["Microsoft","Security Research Specialist","56.8 LPA","2025-11-21","11:46","2025-11-22","09:00","JDs_Phase2/Microsoft_686_2.html"],
+  ["Microsoft","Software Engineer","31.6 LPA","2026-02-16","22:05","2026-02-17","23:59","JDs_Phase2/Microsoft_892_1.html"],
+  ["Miko","Junior AI NLP Engineer","46.0 LPA","2025-11-27","18:10","2025-11-28","23:59","JDs_Phase2/Miko_703_1.html"],
+  ["Miko","Junior AI Image Engineer","46.0 LPA","2025-11-27","18:11","2025-11-28","23:59","JDs_Phase2/Miko_703_2.html"],
+  ["Miko","Junior AI Audio and Speech Engineer","46.0 LPA","2025-11-28","15:44","2025-11-28","23:59","JDs_Phase2/Miko_703_3.html"],
+  ["Miko","Junior Robotics Engineer","46.0 LPA","2025-11-28","15:10","2025-11-28","23:59","JDs_Phase2/Miko_703_4.html"],
+  ["Miko","Junior Embedded Engineer","41.0 LPA","2025-11-27","18:16","2025-11-28","23:59","JDs_Phase2/Miko_703_5.html"],
+  ["Miko","Junior Mechanical Engineer","27.0 LPA","2025-11-27","18:10","2025-11-28","23:59","JDs_Phase2/Miko_703_6.html"],
+  ["Miko","Junior Electronics Hardware Engineer","27.0 LPA","2025-11-27","18:10","2025-11-28","23:59","JDs_Phase2/Miko_703_7.html"],
+  ["Mindstudio private limited","Digital Workflow Architect Graduate Trainee","10.0 LPA","2025-12-04","19:00","2025-12-07","18:59","JDs_Phase2/Mindstudio_private_limited_464_1.html"],
+  ["Mindstudio private limited","Software developer","15.2 LPA","2025-12-06","11:47","2025-12-07","18:59","JDs_Phase2/Mindstudio_private_limited_464_4.html"],
+  ["Moxie Beauty","Management Trainee","12.0 LPA","2026-05-14","15:23","2026-05-15","11:59","JDs_Phase2/Moxie_Beauty__991_2.html"],
+  ["Mygate","Software Development Engineer","20.0 LPA","2025-11-02","19:05","2025-11-05","23:59","JDs_Phase2/Mygate_354_1.html"],
+  ["Myntra","Associate Software Engineer (M1 Grade)","18.0 LPA","2025-11-27","21:54","2025-11-28","23:59","JDs_Phase2/Myntra_717_1.html"],
+  ["NAV Fund Services (India) Private Limited","Trainee Associate - Technology","12.0 LPA","2025-12-05","00:47","2026-01-24","23:59","JDs_Phase2/NAV_Fund_Services_(India)_Private_Limited_551_1.html"],
+  ["NEXT EDUCATION","Engineer- R&amp;D","11.2 LPA","2025-12-12","11:31","2025-12-13","11:59","JDs_Phase2/NEXT_EDUCATION_783_1.html"],
+  ["NINE EDUCATION","Senior Faculty","10.0 LPA","2025-12-10","13:46","2025-12-10","23:59","JDs_Phase2/NINE_EDUCATION_506_1.html"],
+  ["NINE EDUCATION","Senior Faculty","10.0 LPA","2026-04-02","15:34","2026-04-06","18:00","JDs_Phase2/NINE_EDUCATION_506_3.html"],
+  ["NISG","YOUNG PROFESSIONAL","20.0 LPA","2025-12-22","15:41","2025-12-23","23:59","JDs_Phase2/NISG_803_1.html"],
+  ["NK Securities Research","Software Development Engineer","168.0 LPA","2025-10-21","16:03","2025-10-23","16:00","JDs_Phase2/NK_Securities_Research_78_5.html"],
+  ["NK Securities Research","Quantitative Researcher","168.0 LPA","2025-10-21","16:04","2025-10-23","16:00","JDs_Phase2/NK_Securities_Research_78_6.html"],
+  ["NPST (network people services technologies pvt ltd)","Associate Software Engineer","12.0 LPA","2025-12-05","00:50","2025-12-05","18:00","JDs_Phase2/NPST_(network_people_services_technologies_pvt_ltd)_628_1.html"],
+  ["NVIDIA","System Software Engineer","Not specified","2025-11-07","18:00","2025-11-10","23:59","JDs_Phase2/NVIDIA_133_6.html"],
+  ["NVIDIA","ASIC Engineer","44.7 LPA","2025-11-07","18:00","2025-11-10","23:59","JDs_Phase2/NVIDIA_133_7.html"],
+  ["NXP Semiconductors","Signal Processing Engineer","26.0 LPA","2025-12-03","16:05","2025-12-04","08:00","JDs_Phase2/NXP_Semiconductors_695_1.html"],
+  ["Nabhdrishti Aerospace Private Ltd","Instrumentation &amp; Control Systems Engineer","20.0 LPA","2025-11-02","19:05","2025-11-05","23:59","JDs_Phase2/Nabhdrishti_Aerospace_Private_Ltd_270_3.html"],
+  ["Nabhdrishti Aerospace Private Ltd","Data Scientist Gas Turbine Applications","20.0 LPA","2025-11-02","19:05","2025-11-05","23:59","JDs_Phase2/Nabhdrishti_Aerospace_Private_Ltd_270_4.html"],
+  ["Nagarro","Trainee Technology (Data Scientist)","15.0 LPA","2025-11-26","21:00","2025-11-27","23:59","JDs_Phase2/Nagarro_643_1.html"],
+  ["Nasiko","Backend Engineer","18.0 LPA","2026-01-21","15:07","2026-01-24","23:59","JDs_Phase2/Nasiko_808_1.html"],
+  ["Nasiko","Research Engineer (UG)","18.0 LPA","2026-02-02","15:41","2026-02-03","23:59","JDs_Phase2/Nasiko_808_4.html"],
+  ["Nation with Namo","Associate","19.0 LPA","2025-11-10","16:30","2025-11-12","23:59","JDs_Phase2/Nation_with_Namo_159_2.html"],
+  ["Nation with Namo","Campaign Associate","10.6 LPA","2025-11-10","16:29","2025-11-12","23:59","JDs_Phase2/Nation_with_Namo_159_3.html"],
+  ["National Stock Exchange","Technology Trainee- Tools &amp; Automation","15.0 LPA","2025-12-08","16:21","2025-12-09","08:00","JDs_Phase2/National_Stock_Exchange_774_1.html"],
+  ["National Stock Exchange","Tech App Development","15.0 LPA","2025-12-08","16:21","2025-12-09","08:00","JDs_Phase2/National_Stock_Exchange_774_2.html"],
+  ["Natwest Group","Software Engineer","30.0 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Natwest_Group_321_1.html"],
+  ["Navi","SDE I","36.8 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Navi_311_1.html"],
+  ["Navi","Associate Product Manager I","31.3 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Navi_311_2.html"],
+  ["Navi","Data Scientist I","36.8 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Navi_311_3.html"],
+  ["Navi","AI Scientist I","36.8 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Navi_311_4.html"],
+  ["Navi","Business Analyst I","31.3 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Navi_311_5.html"],
+  ["Navi","Associate Manager - Credit Strategy","31.3 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Navi_311_6.html"],
+  ["Neo Wealth and Asset Management","Software Developer","35.0 LPA","2025-11-02","18:53","2025-12-01","19:00","JDs_Phase2/Neo_Wealth_and_Asset_Management_83_4.html"],
+  ["Neo Wealth and Asset Management","Quant Analyst","35.0 LPA","2025-11-02","17:00","2025-12-01","17:00","JDs_Phase2/Neo_Wealth_and_Asset_Management_83_5.html"],
+  ["Nexus Cognitive Technologies India Pvt Ltd","Data/App Engineer","30.0 LPA","2025-11-19","21:05","2025-11-21","23:59","JDs_Phase2/Nexus_Cognitive_Technologies_India_Pvt_Ltd_538_1.html"],
+  ["Nexus Cognitive Technologies India Pvt Ltd","Associate DevOps Engineer","30.0 LPA","2025-11-19","21:07","2025-11-21","23:59","JDs_Phase2/Nexus_Cognitive_Technologies_India_Pvt_Ltd_538_2.html"],
+  ["Nexus Cognitive Technologies India Pvt Ltd","Associate Product Engineer","30.0 LPA","2025-11-19","21:08","2025-11-21","23:59","JDs_Phase2/Nexus_Cognitive_Technologies_India_Pvt_Ltd_538_3.html"],
+  ["Nielsen","Software Engineer","21.0 LPA","2025-11-02","19:08","2025-11-03","23:59","JDs_Phase2/Nielsen_264_1.html"],
+  ["Nirmaan","Project Associate","10.4 LPA","2025-12-06","16:00","2025-12-08","11:59","JDs_Phase2/Nirmaan_629_1.html"],
+  ["NoBroker Technologies Solutions Pvt LTD","Associate Data Scientist","14.0 LPA","2025-11-05","16:04","2025-11-07","13:30","JDs_Phase2/NoBroker_Technologies_Solutions_Pvt_LTD_141_2.html"],
+  ["NoBroker Technologies Solutions Pvt LTD","Applied Scientist I","25.0 LPA","2025-11-05","16:04","2025-11-07","13:30","JDs_Phase2/NoBroker_Technologies_Solutions_Pvt_LTD_141_3.html"],
+  ["NoBroker Technologies Solutions Pvt LTD","UI/UX Designer","14.0 LPA","2025-11-05","16:03","2025-11-07","13:30","JDs_Phase2/NoBroker_Technologies_Solutions_Pvt_LTD_141_4.html"],
+  ["Nokia","Associate Engineer(B.tech/B.S)","28.0 LPA","2026-04-21","20:51","2026-04-23","16:59","JDs_Phase2/Nokia_1025_1.html"],
+  ["Nomura","Global Markets Analyst","26.0 LPA","2025-10-30","16:00","2025-11-01","23:59","JDs_Phase2/Nomura_110_3.html"],
+  ["Nomura","Risk Management Analyst - Model Validation Group","26.5 LPA","2025-10-30","16:00","2025-11-01","23:59","JDs_Phase2/Nomura_110_4.html"],
+  ["Northern Arc Capital","Software Engineer - Technology","15.0 LPA","2026-01-12","12:15","2026-01-18","15:59","JDs_Phase2/Northern_Arc_Capital_802_2.html"],
+  ["Northern Arc Capital","Associate Risk Analyst","10.0 LPA","2026-01-21","15:59","2026-01-26","11:59","JDs_Phase2/Northern_Arc_Capital_802_3.html"],
+  ["Nutanix","Member of Technical Staff","53.0 LPA","2025-11-22","18:23","2025-11-23","23:59","JDs_Phase2/Nutanix_684_1.html"],
+  ["Nvidia Graphics Limited","Verification Engineer","44.7 LPA","2025-11-07","18:00","2025-11-11","23:59","JDs_Phase2/Nvidia_Graphics_Limited_543_1.html"],
+  ["NxtWave Disruptive Technologies Private Limited","SDE-1","35.0 LPA","2025-11-11","18:26","2025-11-14","10:00","JDs_Phase2/NxtWave_Disruptive_Technologies_Private_Limited_627_1.html"],
+  ["Octagos Health","Full Stack Developer","25.0 LPA","2025-11-21","23:11","2025-11-23","17:00","JDs_Phase2/Octagos_Health_626_1.html"],
+  ["Ola","Embedded Systems","30.0 LPA","2025-11-28","19:40","2025-11-29","11:59","JDs_Phase2/Ola_357_11.html"],
+  ["Ola","Electromagnetics","30.0 LPA","2025-11-28","19:40","2025-11-29","11:59","JDs_Phase2/Ola_357_12.html"],
+  ["Ola","Software Engineering","37.0 LPA","2025-11-28","19:40","2025-11-29","17:35","JDs_Phase2/Ola_357_13.html"],
+  ["Ola","Software Engineering - Cloud &amp; Apps","37.0 LPA","2025-11-28","19:35","2025-11-29","11:59","JDs_Phase2/Ola_357_14.html"],
+  ["Ola","Product Manager","37.0 LPA","2025-11-28","19:40","2025-11-29","17:15","JDs_Phase2/Ola_357_7.html"],
+  ["Ola","Power Electronics","30.0 LPA","2025-11-28","19:40","2025-11-29","11:59","JDs_Phase2/Ola_357_8.html"],
+  ["Ola","Power Systems","30.0 LPA","2025-11-28","19:40","2025-11-29","11:59","JDs_Phase2/Ola_357_9.html"],
+  ["OnebyZero","Software Engineer","20.0 LPA","2025-11-24","21:34","2025-11-25","23:59","JDs_Phase2/OnebyZero_653_1.html"],
+  ["Optum, UHG","Technology Development Program Associate","18.0 LPA","2025-12-07","20:17","2025-12-08","11:59","JDs_Phase2/Optum,_UHG_95_2.html"],
+  ["Optum CE","Technical Support Engineer","8.8 LPA","2026-03-30","11:40","2026-04-01","23:59","JDs_Phase2/Optum_CE_977_1.html"],
+  ["Optum CE","Techno Commercial Engineer","13.2 LPA","2026-03-30","11:41","2026-04-01","23:59","JDs_Phase2/Optum_CE_977_2.html"],
+  ["Oracle","Application Developer - 1","18.7 LPA","2025-11-06","19:53","2025-11-08","17:00","JDs_Phase2/Oracle_124_4.html"],
+  ["Oracle","Member Technical Staff-1","34.6 LPA","2025-11-13","17:45","2025-11-14","23:59","JDs_Phase2/Oracle_124_6.html"],
+  ["PHARMAACE","Consultant","13.7 LPA","2025-12-04","13:30","2025-12-05","18:00","JDs_Phase2/PHARMAACE_661_1.html"],
+  ["PHARMAACE","Trainee Engineer","13.7 LPA","2025-12-04","13:30","2025-12-05","18:00","JDs_Phase2/PHARMAACE_661_2.html"],
+  ["Pace Stock Broking Services Pvt. Ltd","Jr. Software Developer","106.0 LPA","2025-09-29","22:17","2025-10-03","23:00","JDs_Phase2/Pace_Stock_Broking_Services_Pvt._Ltd_256_1.html"],
+  ["Pace Stock Broking Services Pvt. Ltd","Jr Quantitative Researcher","106.0 LPA","2025-09-29","22:19","2025-10-03","23:00","JDs_Phase2/Pace_Stock_Broking_Services_Pvt._Ltd_256_2.html"],
+  ["Pandrol Rahee Technologies Private Limited","Product Engineer designs / customer","12.0 LPA","2025-12-07","21:55","2025-12-08","23:59","JDs_Phase2/Pandrol_Rahee_Technologies_Private_Limited_741_1.html"],
+  ["Penguin Ai","Data Scientist","20.0 LPA","2025-12-03","16:34","2025-12-03","23:50","JDs_Phase2/Penguin_Ai_531_1.html"],
+  ["People Interactive","Trainee Engineer","18.0 LPA","2025-11-21","17:32","2025-12-04","13:00","JDs_Phase2/People_Interactive_512_1.html"],
+  ["Perfios Software Solutions Pvt. Ltd","Associate Member Data Science","21.0 LPA","2026-01-14","16:30","2026-01-15","23:59","JDs_Phase2/Perfios_Software_Solutions_Pvt._Ltd_532_1.html"],
+  ["Persistent Systems","Software Engineer","25.0 LPA","2026-03-18","09:42","2026-03-19","17:00","JDs_Phase2/Persistent_Systems_962_1.html"],
+  ["PharmaACE","Consultant","13.7 LPA","2025-12-04","13:30","2025-12-05","18:00","JDs_Phase2/PharmaACE_641_1.html"],
+  ["PharmaACE","Trainee Engineer - AI","13.7 LPA","2025-12-04","13:30","2025-12-05","18:00","JDs_Phase2/PharmaACE_641_2.html"],
+  ["PhysicsWallah","Trainee Professor","6.5 LPA","2026-04-27","16:05","2026-04-29","23:59","JDs_Phase2/PhysicsWallah_203_2.html"],
+  ["Pie Infotech","Jr. Software Developer","8.0 LPA","2025-12-07","21:31","2025-12-08","23:59","JDs_Phase2/Pie_Infotech_511_1.html"],
+  ["Pie Infotech","Jr. Software Developer","8.0 LPA","2025-12-07","21:32","2025-12-08","23:59","JDs_Phase2/Pie_Infotech_511_2.html"],
+  ["Pie Infotech","Jr. Automation Engineer","8.0 LPA","2025-12-07","21:30","2025-12-08","23:59","JDs_Phase2/Pie_Infotech_511_3.html"],
+  ["Pie Infotech","Design Engineer","8.0 LPA","2025-12-07","21:34","2025-12-08","23:59","JDs_Phase2/Pie_Infotech_511_4.html"],
+  ["Pie Infotech","Design Engineer","8.0 LPA","2025-12-07","21:32","2025-12-08","23:59","JDs_Phase2/Pie_Infotech_511_5.html"],
+  ["Pie Infotech","CHEM CAD Designer","8.0 LPA","2025-12-07","21:32","2025-12-08","23:59","JDs_Phase2/Pie_Infotech_511_8.html"],
+  ["Piramal Finance Limited","GET: BIU (Data Scientist)","26.5 LPA","2025-11-26","21:00","2025-11-28","16:00","JDs_Phase2/Piramal_Finance_Limited_673_1.html"],
+  ["Piramal Finance Limited","GET: Technology (software development engineer)","26.5 LPA","2025-11-26","21:00","2025-11-28","16:00","JDs_Phase2/Piramal_Finance_Limited_673_2.html"],
+  ["Plum","SDE 1","16.0 LPA","2026-05-05","16:07","2026-05-06","23:59","JDs_Phase2/Plum_1034_1.html"],
+  ["Plutus Research Pvt Ltd","Trading Systems Developer","51.5 LPA","2025-10-31","19:20","2025-11-03","15:00","JDs_Phase2/Plutus_Research_Pvt_Ltd_341_1.html"],
+  ["Plutus Research Pvt Ltd","Quantitative Analyst","51.5 LPA","2025-10-31","19:18","2025-11-03","15:00","JDs_Phase2/Plutus_Research_Pvt_Ltd_341_2.html"],
+  ["Polestar Analytics","Analyst - Business Intelligence / Anaplan","7.8 LPA","2026-02-05","14:56","2026-02-07","23:59","JDs_Phase2/Polestar_Analytics_472_1.html"],
+  ["Postman","Software Engineer","25.0 LPA","2025-11-21","23:15","2025-11-23","17:00","JDs_Phase2/Postman_612_1.html"],
+  ["Practo Technologies Pvt. Ltd.","UI Development","10.0 LPA","2025-12-07","21:38","2025-12-08","23:59","JDs_Phase2/Practo_Technologies_Pvt._Ltd._458_2.html"],
+  ["Practo Technologies Pvt. Ltd.","Android Development","10.0 LPA","2025-12-07","21:45","2025-12-08","23:59","JDs_Phase2/Practo_Technologies_Pvt._Ltd._458_3.html"],
+  ["Practo Technologies Pvt. Ltd.","iOS Development","10.0 LPA","2025-12-07","21:43","2025-12-08","23:59","JDs_Phase2/Practo_Technologies_Pvt._Ltd._458_4.html"],
+  ["Practo Technologies Pvt. Ltd.","Backend Engineering","10.0 LPA","2025-12-07","21:42","2025-12-08","23:59","JDs_Phase2/Practo_Technologies_Pvt._Ltd._458_5.html"],
+  ["Practo Technologies Pvt. Ltd.","Quality Assurance (QA)","10.0 LPA","2025-12-07","21:32","2025-12-08","23:59","JDs_Phase2/Practo_Technologies_Pvt._Ltd._458_6.html"],
+  ["Prism","Young Leader Program","12.5 LPA","2025-11-21","23:05","2025-11-23","17:00","JDs_Phase2/Prism_308_1.html"],
+  ["Publicis Sapient","ASDE 1","16.7 LPA","2025-11-24","21:38","2025-11-26","23:59","JDs_Phase2/Publicis_Sapient_371_1.html"],
+  ["Publicis Sapient","Senior Associate Data Science L1","16.8 LPA","2025-11-24","21:33","2026-02-03","11:59","JDs_Phase2/Publicis_Sapient_371_2.html"],
+  ["PwC AC","Associate","15.0 LPA","2025-11-18","11:27","2025-11-18","23:59","JDs_Phase2/PwC_AC_633_1.html"],
+  ["PwC AC","Advisory - Business &amp; Supply Chain Operations (BSCO) - Associate","15.0 LPA","2025-11-25","19:15","2025-11-26","23:59","JDs_Phase2/PwC_AC_633_2.html"],
+  ["PwC AC","Advisory - Associate","15.0 LPA","2025-11-26","21:00","2025-11-27","14:00","JDs_Phase2/PwC_AC_633_3.html"],
+  ["QNu Labs","Software Engineer","18.0 LPA","2025-12-04","21:00","2025-12-05","22:00","JDs_Phase2/QNu_Labs_337_1.html"],
+  ["QUANTUMSTREET AI","Associate Quantitative Analyst","18.0 LPA","2026-03-03","09:35","2026-03-04","23:59","JDs_Phase2/QUANTUMSTREET_AI_860_1.html"],
+  ["Quadeye","Quantitative Strategist","93.0 LPA","2025-11-03","19:00","2025-11-05","23:59","JDs_Phase2/Quadeye_73_3.html"],
+  ["Quadeye","Systems Engineer","93.0 LPA","2025-11-03","19:00","2025-11-05","23:59","JDs_Phase2/Quadeye_73_4.html"],
+  ["Qualcomm","AssociateEngineer - Software","31.1 LPA","2025-10-13","12:34","2025-10-16","23:00","JDs_Phase2/Qualcomm_121_12.html"],
+  ["Qualcomm","AssociateEngineer - Hardware","31.1 LPA","2025-10-13","12:35","2025-10-16","23:00","JDs_Phase2/Qualcomm_121_13.html"],
+  ["Quantbox Research","Quant Research and Trading Analyst - India","120.0 LPA","2025-10-06","16:52","2025-10-08","22:00","JDs_Phase2/Quantbox_Research_45_12.html"],
+  ["Quantbox Research","Core Engineering Analyst - Bengaluru/ Gurugram","120.0 LPA","2025-10-06","16:53","2025-10-08","22:00","JDs_Phase2/Quantbox_Research_45_9.html"],
+  ["Quantiphi Analytics","Intern - Business AnalystIntern - Machine Learning Engineer Intern - Framework Engineer","8.5 LPA","2025-12-06","10:38","2025-12-06","22:00","JDs_Phase2/Quantiphi_Analytics_562_1.html"],
+  ["Quantiphi Analytics","Intern - Framework Engineer","8.5 LPA","2025-12-06","10:36","2025-12-06","22:00","JDs_Phase2/Quantiphi_Analytics_562_2.html"],
+  ["Quantiphi Analytics","Intern - Business Analyst","8.5 LPA","2025-12-06","10:35","2025-12-06","22:00","JDs_Phase2/Quantiphi_Analytics_562_3.html"],
+  ["Quantiphi Analytics","Intern - Machine Learning Engineer","8.5 LPA","2025-12-06","10:36","2025-12-06","22:00","JDs_Phase2/Quantiphi_Analytics_562_4.html"],
+  ["Quest Educare","Faculty","12.5 LPA","2026-03-03","09:39","2026-03-04","23:59","JDs_Phase2/Quest_Educare_899_1.html"],
+  ["Quest Global","Design Engineer","10.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Quest_Global_433_1.html"],
+  ["Quest Global","Instrumentation &amp; Controls","10.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Quest_Global_433_2.html"],
+  ["Quest Global","Chemical Engineer","1.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Quest_Global_433_3.html"],
+  ["Quest Global","Electrical Engineer","10.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Quest_Global_433_4.html"],
+  ["Quest Global","Petroleum Engineer","10.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Quest_Global_433_5.html"],
+  ["RAKUTEN GROUP, INC.","Full Stack Engineer","6200000 JPY","2025-10-19","12:11","2025-10-21","23:00","JDs_Phase2/RAKUTEN_GROUP,_INC._435_1.html"],
+  ["RAKUTEN GROUP, INC.","Data Engineer / Data Scientist","6200000 JPY","2025-10-19","12:10","2025-10-21","23:00","JDs_Phase2/RAKUTEN_GROUP,_INC._435_2.html"],
+  ["RAKUTEN GROUP, INC.","Researcher Scientist","6200000 JPY","2025-10-19","12:08","2025-10-21","23:00","JDs_Phase2/RAKUTEN_GROUP,_INC._435_3.html"],
+  ["RISA LABS Inc","Member of Technical Staff","53.9 LPA","2025-11-06","13:15","2025-11-08","23:59","JDs_Phase2/RISA_LABS_Inc_505_1.html"],
+  ["RISA LABS Inc","Member of Technical Staff (USA)","180000 USD","2025-11-06","13:19","2025-11-08","23:59","JDs_Phase2/RISA_LABS_Inc_505_2.html"],
+  ["RISA LABS Inc","Associate Product Manager","36.9 LPA","2025-11-06","13:17","2025-11-08","23:59","JDs_Phase2/RISA_LABS_Inc_505_3.html"],
+  ["RISA LABS Inc","Associate Product Manager - Growth (USA)","150000 USD","2025-11-06","13:14","2025-11-08","23:59","JDs_Phase2/RISA_LABS_Inc_505_4.html"],
+  ["RISA LABS Inc","System Engineer","53.9 LPA","2025-11-06","13:13","2025-11-08","23:59","JDs_Phase2/RISA_LABS_Inc_505_5.html"],
+  ["RISA LABS Inc","Product Designer","36.9 LPA","2025-11-06","13:18","2025-11-08","23:59","JDs_Phase2/RISA_LABS_Inc_505_6.html"],
+  ["RISA LABS Inc","Associate Technical Product Manager","36.9 LPA","2025-11-22","18:21","2025-11-23","11:59","JDs_Phase2/RISA_LABS_Inc_505_7.html"],
+  ["Razorpay","Software Development Engineer","19.0 LPA","2025-11-07","20:27","2025-11-08","09:00","JDs_Phase2/Razorpay_230_2.html"],
+  ["Realization Technologies India Pvt Ltd","Implementer/ Senior Implementer","8.0 LPA","2026-04-23","11:55","2026-04-24","11:59","JDs_Phase2/Realization_Technologies_India_Pvt_Ltd_1031_1.html"],
+  ["Rekise Marine Private Limited","Robotics Engineer","18.0 LPA","2025-11-25","17:50","2025-11-29","17:00","JDs_Phase2/Rekise_Marine_Private_Limited_399_2.html"],
+  ["Rekise Marine Private Limited","Embedded Systems Engineer","18.0 LPA","2025-11-25","17:51","2025-11-29","17:00","JDs_Phase2/Rekise_Marine_Private_Limited_399_3.html"],
+  ["Rekise Marine Private Limited","Perception Engineer","18.0 LPA","2025-11-26","19:15","2025-11-29","17:00","JDs_Phase2/Rekise_Marine_Private_Limited_399_5.html"],
+  ["Reliance Industries Limited (New Energy Initiatives)","Team Member (Manager) - Mechanical","15.0 LPA","2025-12-02","09:58","2025-12-02","23:59","JDs_Phase2/Reliance_Industries_Limited_(New_Energy_Initiatives)_637_1.html"],
+  ["Reliance Industries Limited (New Energy Initiatives)","Team Member (Manager) - Electrical","15.0 LPA","2025-12-02","09:56","2025-12-02","23:59","JDs_Phase2/Reliance_Industries_Limited_(New_Energy_Initiatives)_637_2.html"],
+  ["Reliance Industries Limited (New Energy Initiatives)","Team Member (Manager) - Computer","15.0 LPA","2025-12-02","09:56","2025-12-02","23:59","JDs_Phase2/Reliance_Industries_Limited_(New_Energy_Initiatives)_637_3.html"],
+  ["Reliance Industries Limited (New Energy Initiatives)","Team Member (Manager) - Civil","15.0 LPA","2025-12-02","09:57","2025-12-02","23:59","JDs_Phase2/Reliance_Industries_Limited_(New_Energy_Initiatives)_637_4.html"],
+  ["Reliance Industries Limited (New Energy Initiatives)","Team Member (Manager) - Chemical","15.0 LPA","2025-12-02","09:58","2025-12-02","23:59","JDs_Phase2/Reliance_Industries_Limited_(New_Energy_Initiatives)_637_5.html"],
+  ["Reliance Industries Limited (New Energy Initiatives)","Team Member (Manager) - Material Engineering","15.0 LPA","2025-12-02","09:58","2025-12-02","23:59","JDs_Phase2/Reliance_Industries_Limited_(New_Energy_Initiatives)_637_6.html"],
+  ["Reliance Retail","NA","13.0 LPA","2026-01-21","15:20","2026-01-23","23:59","JDs_Phase2/Reliance_Retail_853_1.html"],
+  ["Revfin Services Private Limited","Senior Software Developer","12.0 LPA","2025-12-06","12:10","2025-12-07","23:59","JDs_Phase2/Revfin_Services_Private_Limited_576_1.html"],
+  ["Rosh.Ai Private Limited","AI Engineer","16.0 LPA","2025-11-24","21:16","2025-11-25","23:59","JDs_Phase2/Rosh.Ai_Private_Limited_486_1.html"],
+  ["SAIHARMONY SOLUTIONS INDIA PRIVATE LIMITED","Software Engineering","20.0 LPA","2025-12-23","12:16","2025-12-25","12:00","JDs_Phase2/SAIHARMONY_SOLUTIONS_INDIA_PRIVATE_LIMITED_804_1.html"],
+  ["SAMSUNG R&amp;D INSTITUTE - NOIDA","R&amp;D Engineer","31.5 LPA","2025-11-10","18:19","2025-11-11","23:59","JDs_Phase2/SAMSUNG_R&amp;D_INSTITUTE_-_NOIDA_205_2.html"],
+  ["SCIATIVE","Software Developer [Quick Progress Track]","22.1 LPA","2025-12-09","15:45","2025-12-09","23:59","JDs_Phase2/SCIATIVE_604_1.html"],
+  ["SCIATIVE","Project Management Associate [Quick Progress Track]","19.2 LPA","2025-12-09","15:44","2025-12-09","23:59","JDs_Phase2/SCIATIVE_604_2.html"],
+  ["SEDEMAC Mechatronics Limited","Engineer, Electronic Hardware","17.0 LPA","2025-10-25","16:08","2025-11-03","23:59","JDs_Phase2/SEDEMAC_Mechatronics_Limited_313_1.html"],
+  ["SEDEMAC Mechatronics Limited","Engineer, Embedded Software","17.0 LPA","2025-10-25","16:00","2025-11-03","23:59","JDs_Phase2/SEDEMAC_Mechatronics_Limited_313_2.html"],
+  ["SEDEMAC Mechatronics Limited","Engineer, R&amp;D (Rnd-SysE-COE-AppE-CSA) and Engineer, Test Automation","17.0 LPA","2025-10-25","16:09","2025-11-03","23:59","JDs_Phase2/SEDEMAC_Mechatronics_Limited_313_3.html"],
+  ["SHIMIZU CORPORATION INDIA PRIVATE LIMITED","Electrical Engineer","8.8 LPA","2025-12-07","22:35","2025-12-08","23:59","JDs_Phase2/SHIMIZU_CORPORATION_INDIA_PRIVATE_LIMITED_428_3.html"],
+  ["SKY FLOW","Software Engineer","20.0 LPA","2025-11-21","23:07","2025-11-23","17:00","JDs_Phase2/SKY_FLOW_345_1.html"],
+  ["SLB","Performance Live Engineer Trainee","23.0 LPA","2025-11-18","21:22","2025-11-26","17:59","JDs_Phase2/SLB_148_11.html"],
+  ["SLB","Field Engineer Trainee","34.0 LPA","2025-11-18","21:20","2025-11-26","17:59","JDs_Phase2/SLB_148_3.html"],
+  ["SLB","Electrical Engineer - B.Tech","23.0 LPA","2025-11-18","21:21","2025-11-26","17:59","JDs_Phase2/SLB_148_5.html"],
+  ["SLB","Data Scientist - B.Tech","32.4 LPA","2025-11-18","21:18","2025-11-26","17:59","JDs_Phase2/SLB_148_9.html"],
+  ["SLB","Full Stack Engineer","26.1 LPA","2025-11-25","17:48","2025-11-26","18:00","JDs_Phase2/SLB_80_2.html"],
+  ["SLIKSYNC TECHNOLOGIES PRIVATE LIMITED","Software Developer (Mobile)","17.0 LPA","2025-12-03","21:35","2025-12-04","23:59","JDs_Phase2/SLIKSYNC_TECHNOLOGIES_PRIVATE_LIMITED_702_1.html"],
+  ["SLIKSYNC TECHNOLOGIES PRIVATE LIMITED","Software Developer ( Backend )","17.0 LPA","2025-12-03","21:36","2025-12-04","23:59","JDs_Phase2/SLIKSYNC_TECHNOLOGIES_PRIVATE_LIMITED_702_2.html"],
+  ["SLIKSYNC TECHNOLOGIES PRIVATE LIMITED","Data Analyst","13.0 LPA","2025-12-03","21:37","2025-12-04","23:59","JDs_Phase2/SLIKSYNC_TECHNOLOGIES_PRIVATE_LIMITED_702_3.html"],
+  ["SLIKSYNC TECHNOLOGIES PRIVATE LIMITED","Associate Product Manager","17.0 LPA","2025-12-03","21:37","2025-12-04","23:59","JDs_Phase2/SLIKSYNC_TECHNOLOGIES_PRIVATE_LIMITED_702_4.html"],
+  ["SMFG India Credit Co. Ltd.","Management Trainee - Technology","12.5 LPA","2026-01-27","12:25","2026-01-27","18:00","JDs_Phase2/SMFG_India_Credit_Co._Ltd._851_2.html"],
+  ["SMFG India Credit Co. Ltd.","Management Trainee - Analytics","12.5 LPA","2026-01-27","12:24","2026-01-27","18:00","JDs_Phase2/SMFG_India_Credit_Co._Ltd._851_3.html"],
+  ["SM Consultants Pvt. Ltd.","GEOTECHNICAL ENGINEER","6.0 LPA","2026-03-07","16:35","2026-03-08","23:59","JDs_Phase2/SM_Consultants_Pvt._Ltd._916_1.html"],
+  ["SM Consultants Pvt. Ltd.","GIS","6.0 LPA","2026-03-07","16:37","2026-03-08","23:59","JDs_Phase2/SM_Consultants_Pvt._Ltd._916_2.html"],
+  ["SM Consultants Pvt. Ltd.","Highway Engineering","6.0 LPA","2026-03-07","16:36","2026-03-08","23:59","JDs_Phase2/SM_Consultants_Pvt._Ltd._916_3.html"],
+  ["SM Consultants Pvt. Ltd.","Structure Engineering","6.0 LPA","2026-03-07","16:34","2026-03-08","23:59","JDs_Phase2/SM_Consultants_Pvt._Ltd._916_4.html"],
+  ["SONALIKA TRACTORS","Assistant Manager","11.0 LPA","2025-12-07","22:22","2026-01-19","23:59","JDs_Phase2/SONALIKA_TRACTORS_180_1.html"],
+  ["SQUAREPOINT CAPITAL","Desk Quant Analyst","66.1 LPA","2025-09-29","22:25","2025-10-03","23:00","JDs_Phase2/SQUAREPOINT_CAPITAL_288_1.html"],
+  ["SQUAREPOINT CAPITAL","Graduate Software Developer","66.1 LPA","2025-09-29","22:27","2025-10-03","23:00","JDs_Phase2/SQUAREPOINT_CAPITAL_288_2.html"],
+  ["SQUAREPOINT CAPITAL","Infrastructure Engineer","66.1 LPA","2025-09-29","22:29","2025-10-03","23:00","JDs_Phase2/SQUAREPOINT_CAPITAL_288_3.html"],
+  ["SRF Limited","Senior Executive","10.0 LPA","2025-12-04","11:37","2025-12-04","23:59","JDs_Phase2/SRF_Limited_226_1.html"],
+  ["Saint-Gobain Research India","Research Engineer 1","9.6 LPA","2025-12-08","07:49","2025-12-08","23:59","JDs_Phase2/Saint-Gobain_Research_India_577_1.html"],
+  ["SalesCode.Ai","Software Development Trainee- Engineering Leadership Track (ELT)","30.5 LPA","2025-11-26","21:04","2025-11-28","23:59","JDs_Phase2/SalesCode.Ai_707_1.html"],
+  ["SalesCode.Ai","Product Management Trainee- Engineering Leadership Track (ELT)","30.5 LPA","2025-11-26","21:00","2025-11-28","23:59","JDs_Phase2/SalesCode.Ai_707_3.html"],
+  ["SalesCode.Ai","Software Development Trainee-Engineering Impact Track (EIT)","22.8 LPA","2025-11-26","21:00","2025-11-28","23:59","JDs_Phase2/SalesCode.Ai_707_4.html"],
+  ["SalesCode.Ai","Gen AI Trainee- Engineering Impact Track (EIT)","22.8 LPA","2025-11-26","21:00","2025-11-28","23:59","JDs_Phase2/SalesCode.Ai_707_5.html"],
+  ["SalesCode.Ai","Product Management Trainee- Engineering Impact Track (EIT)","22.8 LPA","2025-11-28","10:50","2025-11-28","23:59","JDs_Phase2/SalesCode.Ai_707_6.html"],
+  ["Samsara","Software Engineer","108810 GBP","2025-10-09","17:48","2025-10-11","23:59","JDs_Phase2/Samsara_57_2.html"],
+  ["Samsara","Software Engineer","31.8 LPA","2025-10-09","17:51","2025-10-11","23:59","JDs_Phase2/Samsara_57_3.html"],
+  ["Samsung Research Bangalore","Engineer / Sr. Engineer (Adv. Developer)","48.0 LPA","2025-11-06","11:50","2025-11-07","13:00","JDs_Phase2/Samsung_Research_Bangalore_19_4.html"],
+  ["Samsung Research and Development Institute India Delhi","Software Development Engineer","24.5 LPA","2025-11-10","18:40","2025-11-13","23:59","JDs_Phase2/Samsung_Research_and_Development_Institute_India_Delhi_593_1.html"],
+  ["Scienaptic Systems","Software Engineer","14.0 LPA","2025-12-07","21:25","2025-12-08","11:59","JDs_Phase2/Scienaptic_Systems_252_1.html"],
+  ["Sciforn Solutions","FULL STACK DEVELOPER","26.0 LPA","2025-11-10","16:03","2025-11-12","10:00","JDs_Phase2/Sciforn_Solutions_212_2.html"],
+  ["Searce Inc","Solutions Consultant","20.0 LPA","2025-12-04","15:48","2025-12-04","23:59","JDs_Phase2/Searce_Inc_387_1.html"],
+  ["Searce Inc","EVLOS AI Engineer","26.0 LPA","2025-12-04","15:48","2025-12-04","23:59","JDs_Phase2/Searce_Inc_387_2.html"],
+  ["Searce Inc","AI Engineer","26.0 LPA","2025-12-04","15:48","2025-12-04","23:59","JDs_Phase2/Searce_Inc_387_3.html"],
+  ["Searce Inc","Data Engineer","26.0 LPA","2025-12-06","15:45","2025-12-06","23:59","JDs_Phase2/Searce_Inc_387_4.html"],
+  ["Searce Inc","Cloud Engineer","20.0 LPA","2025-12-04","15:48","2025-12-04","23:59","JDs_Phase2/Searce_Inc_387_5.html"],
+  ["Searce Inc","Software Engineer","24.0 LPA","2025-12-04","15:45","2025-12-05","23:59","JDs_Phase2/Searce_Inc_387_6.html"],
+  ["Searce Inc","Associate - Business Process Improvement","20.0 LPA","2025-12-04","15:43","2025-12-04","23:59","JDs_Phase2/Searce_Inc_387_7.html"],
+  ["Shree Cement Ltd.","Graduate Engineer Trainee","15.0 LPA","2025-12-10","13:40","2025-12-11","23:59","JDs_Phase2/Shree_Cement_Ltd._773_1.html"],
+  ["Siemens EDA (_India_) Private Limited","Member Technical Staff:- Software","24.0 LPA","2025-11-14","13:00","2025-11-15","23:59","JDs_Phase2/Siemens_EDA_(_India_)_Private_Limited_657_1.html"],
+  ["Siemens EDA (_India_) Private Limited","Member Technical Staff:- Digital","24.0 LPA","2025-11-14","13:00","2025-11-15","23:59","JDs_Phase2/Siemens_EDA_(_India_)_Private_Limited_657_2.html"],
+  ["Siemens Helathineers","Engineer - Design and Development","16.0 LPA","2025-12-07","22:07","2025-12-08","23:59","JDs_Phase2/Siemens_Helathineers_734_1.html"],
+  ["Sigmoid","Data Science Trainee","10.0 LPA","2025-12-07","22:08","2025-12-08","23:59","JDs_Phase2/Sigmoid_536_1.html"],
+  ["Sigmoid","Data Analyst Trainee","10.0 LPA","2025-12-07","22:09","2025-12-08","23:59","JDs_Phase2/Sigmoid_536_2.html"],
+  ["Signzy","Associate Product Manager ( 6 months internship + PPO)","16.0 LPA","2025-12-08","08:00","2025-12-08","23:59","JDs_Phase2/Signzy_759_1.html"],
+  ["Sileaf Technologies Pvt Ltd","Research and Development Engineer - Masters","Not specified","2026-02-10","17:23","2026-02-18","23:59","JDs_Phase2/Sileaf_Technologies_Pvt_Ltd_101_2.html"],
+  ["Skellam AI","AI/ML Engineer","8.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/Skellam_AI_240_1.html"],
+  ["Skyroot Aerospace","Degree Job Title Compensation Bond/ Service Contract CTC (Lakhs/Annum) Take Home PerksBachelors(Admission\n            through JEE) GET Mechanical &amp; Aerospace Electrical &amp; Electronics B.Tech 15 (Fix-12LPA + Var- 1 +2\n            ESOPs) 16 (Fix-12LPA + Var- 2 +2 ESOPs)Dual (Bachelors + Masters)(Admission through JEE) PGET Mechanical\n            &amp; Aerospace Electrical &amp; Electronics Dual 16 (Fix-12LPA + Var- 2 +2 ESOPs) 17 (Fix-12LPA + Var- 3 +2\n            ESOPs)Masters(Admission throughGATE/JAM PGET Mechanical &amp; Aerospace Electrical &amp; Electronics M.Tech\n            14 (Fix-11LPA + Var- 1 +2 ESOPs) 15 (Fix-11LPA + Var- 2 +2 ESOPs)","14.0 LPA","2025-12-06","11:32","2025-12-07","11:59","JDs_Phase2/Skyroot_Aerospace_693_1.html"],
+  ["Skyroot Aerospace","Associate (Launch BD)","14.0 LPA","2025-12-08","12:58","2025-12-08","23:59","JDs_Phase2/Skyroot_Aerospace_693_2.html"],
+  ["Skyroot Aerospace","Business Analyst","14.0 LPA","2025-12-08","12:59","2025-12-08","23:59","JDs_Phase2/Skyroot_Aerospace_693_3.html"],
+  ["Smartcoin Financials Pvt Ltd.","Software Development Engineer Trainee","22.0 LPA","2025-11-02","19:10","2025-11-05","23:59","JDs_Phase2/Smartcoin_Financials_Pvt_Ltd._423_1.html"],
+  ["Smartcoin Financials Pvt Ltd.","Data Scientist/Analyst Trainee","18.0 LPA","2025-11-02","19:12","2025-11-05","23:59","JDs_Phase2/Smartcoin_Financials_Pvt_Ltd._423_2.html"],
+  ["Solar Defence &amp; Aerospace Limited","Embedded System Engineer (Communication)","14.0 LPA","2025-11-24","21:57","2025-11-25","23:59","JDs_Phase2/Solar_Defence_&amp;_Aerospace_Limited_527_3.html"],
+  ["Solar Defence &amp; Aerospace Limited","SDR and FPGA Engineer","14.0 LPA","2025-11-24","21:56","2025-11-25","23:59","JDs_Phase2/Solar_Defence_&amp;_Aerospace_Limited_527_4.html"],
+  ["Solar Defence &amp; Aerospace Limited","RF Communication Engineer for MALE UAV","14.0 LPA","2025-11-24","21:38","2025-11-25","23:59","JDs_Phase2/Solar_Defence_&amp;_Aerospace_Limited_527_6.html"],
+  ["Sprinklr","Engineer","30.0 LPA","2025-11-01","18:00","2025-11-05","10:00","JDs_Phase2/Sprinklr_39_2.html"],
+  ["Sprinklr","Product Analyst","15.0 LPA","2025-11-01","18:00","2025-11-05","10:00","JDs_Phase2/Sprinklr_39_3.html"],
+  ["SriusAI","Analyst/Consultant","15.4 LPA","2025-12-09","07:15","2025-12-09","23:59","JDs_Phase2/SriusAI_516_1.html"],
+  ["Standard Chartered GBS Pvt Ltd","Development Engineers","17.2 LPA","2025-11-21","21:52","2025-11-22","23:00","JDs_Phase2/Standard_Chartered_GBS_Pvt_Ltd_682_1.html"],
+  ["Startoon Labs Private Limited","Product Specialist","10.0 LPA","2025-12-07","22:24","2025-12-08","23:59","JDs_Phase2/Startoon_Labs_Private_Limited_175_2.html"],
+  ["Straive","Associate Data Science Engineer","15.2 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Straive_377_1.html"],
+  ["Stratos Infra Technologies Pvt Ltd","Associate - Founders Office","8.0 LPA","2025-12-07","22:31","2025-12-08","23:59","JDs_Phase2/Stratos_Infra_Technologies_Pvt_Ltd_385_1.html"],
+  ["SuperAGI","SDE - 1","16.0 LPA","2025-11-25","19:09","2025-11-26","23:59","JDs_Phase2/SuperAGI_658_1.html"],
+  ["SuperAGI","AI Researcher","16.0 LPA","2025-12-03","11:15","2025-12-03","23:59","JDs_Phase2/SuperAGI_658_2.html"],
+  ["Swiggy","GRADUATE TRAINEE- GROWTH","17.5 LPA","2025-11-26","19:00","2025-11-27","23:59","JDs_Phase2/Swiggy_705_1.html"],
+  ["Swiggy","GRADUATE TRAINEE- CENTRAL OPERATIONS","17.5 LPA","2025-11-26","19:00","2025-11-27","23:59","JDs_Phase2/Swiggy_705_2.html"],
+  ["Swiggy","GRADUATE TRAINEE- REGIONAL OPERATIONS","17.5 LPA","2025-11-26","19:00","2025-11-27","23:59","JDs_Phase2/Swiggy_705_3.html"],
+  ["Systalyze","Software Engineer","80.0 LPA","2025-11-25","17:34","2025-11-26","23:59","JDs_Phase2/Systalyze_671_1.html"],
+  ["TATA AIG","Senior Engineer Trainee","Not specified","2025-12-03","16:35","2025-12-03","23:50","JDs_Phase2/TATA_AIG_171_1.html"],
+  ["TCG Digital Solutions Pvt Ltd","Consultant Product Developer","16.0 LPA","2025-11-24","12:25","2025-11-25","13:59","JDs_Phase2/TCG_Digital_Solutions_Pvt_Ltd_156_3.html"],
+  ["TCIL","Executive Trainee","12.0 LPA","2025-12-08","07:50","2025-12-09","23:59","JDs_Phase2/TCIL_346_1.html"],
+  ["TESCRA SOFTWARE PVT LTD","Software engineer","15.0 LPA","2025-12-07","20:57","2025-12-08","11:59","JDs_Phase2/TESCRA_SOFTWARE_PVT_LTD_568_1.html"],
+  ["TRACELINK","Agentic AI Engineer","Not specified","2026-01-28","17:49","2026-01-29","17:00","JDs_Phase2/TRACELINK_863_1.html"],
+  ["TRACELINK","Machine Learning Engineer","Not specified","2026-01-28","17:48","2026-01-29","17:00","JDs_Phase2/TRACELINK_863_2.html"],
+  ["TURIUM AI","AI Engineer","16.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/TURIUM_AI_507_1.html"],
+  ["TalentEdge Info solutions pvt ltd","Software Developer Trainee","12.0 LPA","2025-12-08","08:00","2025-12-08","23:59","JDs_Phase2/TalentEdge_Info_solutions_pvt_ltd_588_1.html"],
+  ["Tanla Platfroms Ltd","Data Science Engineer I","21.0 LPA","2025-12-08","08:00","2025-12-08","23:59","JDs_Phase2/Tanla_Platfroms_Ltd_420_1.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee","8.0 LPA","2025-12-05","00:40","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_1.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee - Materials","8.0 LPA","2025-12-05","00:40","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_2.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee - Structures","8.0 LPA","2025-12-05","00:34","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_3.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee - Avionics","8.0 LPA","2025-12-05","00:30","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_4.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee - GCS","8.0 LPA","2025-12-05","00:35","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_5.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee - Software","8.0 LPA","2025-12-05","00:32","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_6.html"],
+  ["Tata Advanced Systems Ltd","Post Graduate Engineer Trainee - Controls","8.0 LPA","2025-12-05","00:37","2025-12-05","18:00","JDs_Phase2/Tata_Advanced_Systems_Ltd_500_7.html"],
+  ["Tata Consultancy Services","Systems Engineer","9.0 LPA","2025-12-18","12:08","2025-12-22","23:59","JDs_Phase2/Tata_Consultancy_Services_708_1.html"],
+  ["Tata Consultancy Services","Systems Engineer","11.0 LPA","2025-12-18","12:09","2025-12-22","23:59","JDs_Phase2/Tata_Consultancy_Services_708_2.html"],
+  ["Tata Steel","Management Trainee","13.0 LPA","2025-11-25","22:02","2025-11-27","16:59","JDs_Phase2/Tata_Steel_302_3.html"],
+  ["Tavant technologies","Software Engineer Trainee","14.0 LPA","2025-12-06","00:00","2025-12-06","23:59","JDs_Phase2/Tavant_technologies_670_1.html"],
+  ["Techlanz Pvt Ltd","Hardware Design Engineer","8.0 LPA","2025-12-08","08:10","2025-12-08","23:59","JDs_Phase2/Techlanz_Pvt_Ltd_606_1.html"],
+  ["Telus Digital","ML Engineer 1","28.8 LPA","2025-11-24","21:39","2025-11-25","23:59","JDs_Phase2/Telus_Digital_569_2.html"],
+  ["Telus Digital","Associate Project Manager","22.0 LPA","2025-11-24","21:43","2025-11-25","23:59","JDs_Phase2/Telus_Digital_569_5.html"],
+  ["Tesla","SIE Mechanical","25.0 LPA","2025-10-24","13:00","2025-10-28","19:59","JDs_Phase2/Tesla_343_2.html"],
+  ["Tesla","SIE PCBA","25.0 LPA","2025-10-24","13:00","2025-10-28","19:59","JDs_Phase2/Tesla_343_3.html"],
+  ["Tetrapak","FUTURE TALENT PROGRAM SALES ANALYST","10.0 LPA","2025-12-05","13:10","2025-12-06","16:59","JDs_Phase2/Tetrapak_736_1.html"],
+  ["Texas Instruments","Analog Engineer","40.1 LPA","2025-10-29","18:47","2025-10-31","23:59","JDs_Phase2/Texas_Instruments_471_1.html"],
+  ["Texas Instruments","Digital Engineer","40.1 LPA","2025-10-29","18:46","2025-10-31","23:59","JDs_Phase2/Texas_Instruments_471_2.html"],
+  ["Texas Instruments","Signal Processing Engineer","40.1 LPA","2025-10-29","18:48","2025-10-31","23:59","JDs_Phase2/Texas_Instruments_471_3.html"],
+  ["Texas Instruments","Embedded Software Engineer","40.1 LPA","2025-10-29","18:43","2025-10-31","23:59","JDs_Phase2/Texas_Instruments_471_4.html"],
+  ["Tirupati Global DMCC","Quant Researcher","75.0 LPA","2025-11-06","18:00","2025-11-10","23:59","JDs_Phase2/Tirupati_Global_DMCC_519_1.html"],
+  ["Tirupati Global DMCC","Quant Developer","70.0 LPA","2025-11-06","18:00","2025-11-10","23:59","JDs_Phase2/Tirupati_Global_DMCC_519_2.html"],
+  ["Tolken","Open Application","33.0 LPA","2026-04-21","09:35","2026-04-22","11:59","JDs_Phase2/Tolken_1027_1.html"],
+  ["Tolken","Applied Scientist Pricing, Bidding &amp;Decisioning","33.0 LPA","2026-04-21","09:35","2026-04-22","11:59","JDs_Phase2/Tolken_1027_2.html"],
+  ["Tolken","Software Engineer Full-Stack","33.0 LPA","2026-04-21","09:35","2026-04-22","11:59","JDs_Phase2/Tolken_1027_3.html"],
+  ["Trexquant India Business Consulting","Quantitative Researcher","91.4 LPA","2025-11-22","18:18","2025-11-23","19:00","JDs_Phase2/Trexquant_India_Business_Consulting_85_2.html"],
+  ["Trinity Life Sciences","Associate","17.0 LPA","2026-01-28","15:19","2026-01-30","10:00","JDs_Phase2/Trinity_Life_Sciences_850_1.html"],
+  ["Truckx Techologies Pvt Ltd","Software Development Engineer","16.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Truckx_Techologies_Pvt_Ltd_436_1.html"],
+  ["UTKARSH CLASSES","Associate Faculty","6.0 LPA","2026-03-09","17:01","2026-03-10","23:59","JDs_Phase2/UTKARSH_CLASSES_871_1.html"],
+  ["Unilog Content Solutions","Trainee Software Engineer","8.0 LPA","2025-12-06","00:00","2025-12-07","11:59","JDs_Phase2/Unilog_Content_Solutions_28_3.html"],
+  ["Upswing Financial Technologies Pvt. Ltd.","Software Development Engineer (SDE)","48.0 LPA","2025-11-06","11:32","2025-11-08","23:59","JDs_Phase2/Upswing_Financial_Technologies_Pvt._Ltd._498_1.html"],
+  ["Upswing Financial Technologies Pvt. Ltd.","Cloud Platform Engineer","48.0 LPA","2025-11-06","11:32","2025-11-08","23:59","JDs_Phase2/Upswing_Financial_Technologies_Pvt._Ltd._498_2.html"],
+  ["Urban Company","Senior Category Manager","16.0 LPA","2025-11-03","19:00","2025-11-05","18:00","JDs_Phase2/Urban_Company_361_1.html"],
+  ["Urban Company","Senior Category Manager(Dubai)","45.6 LPA","2025-11-03","19:00","2025-11-05","18:00","JDs_Phase2/Urban_Company_361_2.html"],
+  ["VConnecTech Systems Private Limited","Product Manager","12.0 LPA","2026-03-08","11:45","2026-03-17","23:59","JDs_Phase2/VConnecTech_Systems_Private_Limited_897_1.html"],
+  ["VMOCK","Top Coder","35.0 LPA","2025-11-12","16:01","2025-11-13","23:59","JDs_Phase2/VMOCK_603_1.html"],
+  ["VMOCK","Data Scientist","21.0 LPA","2025-11-12","16:01","2025-11-13","23:59","JDs_Phase2/VMOCK_603_2.html"],
+  ["VMOCK","Product Analyst","15.0 LPA","2025-11-12","16:02","2025-11-13","23:59","JDs_Phase2/VMOCK_603_4.html"],
+  ["VMOCK","Software Developer","21.0 LPA","2025-11-12","16:02","2025-11-13","23:59","JDs_Phase2/VMOCK_603_5.html"],
+  ["VVF","EMT","16.0 LPA","2025-11-24","21:33","2025-11-25","23:59","JDs_Phase2/VVF_572_1.html"],
+  ["Vantage Research","Scientist-Modeler-1","15.0 LPA","2025-12-07","20:54","2025-12-08","11:59","JDs_Phase2/Vantage_Research_642_1.html"],
+  ["Vantage Research","Scientist-Modeller-2","20.0 LPA","2025-12-07","20:55","2025-12-08","11:59","JDs_Phase2/Vantage_Research_642_2.html"],
+  ["Varuna marine Services BV","Full Stack Developer","9.0 LPA","2026-03-11","12:46","2026-03-16","23:59","JDs_Phase2/Varuna_marine_Services_BV_931_2.html"],
+  ["Vassar Labs IT Solutions Pvt Ltd","SDE - Research &amp; Development","12.0 LPA","2025-12-06","00:00","2025-12-08","11:59","JDs_Phase2/Vassar_Labs_IT_Solutions_Pvt_Ltd_374_1.html"],
+  ["Vassar Labs IT Solutions Pvt Ltd","SDE - Data Science","12.0 LPA","2025-12-06","06:00","2025-12-08","11:59","JDs_Phase2/Vassar_Labs_IT_Solutions_Pvt_Ltd_374_2.html"],
+  ["Vassar Labs IT Solutions Pvt Ltd","SME - GIS","8.0 LPA","2025-12-06","00:00","2025-12-08","11:59","JDs_Phase2/Vassar_Labs_IT_Solutions_Pvt_Ltd_374_4.html"],
+  ["Vassar Labs IT Solutions Pvt Ltd","SME - Water Resources/Hydrologist","8.0 LPA","2025-12-06","00:00","2025-12-08","11:59","JDs_Phase2/Vassar_Labs_IT_Solutions_Pvt_Ltd_374_5.html"],
+  ["Vedanta Limited","PGET","14.1 LPA","2025-12-18","21:10","2025-12-24","14:59","JDs_Phase2/Vedanta_Limited_797_1.html"],
+  ["Versa Networks India","Software Engineer 1","24.0 LPA","2025-11-10","16:04","2025-11-11","17:00","JDs_Phase2/Versa_Networks_India_339_1.html"],
+  ["Virtusa Corporation","Associate Consultant","12.0 LPA","2025-12-03","19:00","2025-12-04","21:00","JDs_Phase2/Virtusa_Corporation_365_1.html"],
+  ["Visa Inc","Software Engineer","45.4 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Visa_Inc_231_2.html"],
+  ["WALMART GLOBAL TECH","Software Engineer II","26.9 LPA","2025-10-28","12:18","2025-10-30","20:00","JDs_Phase2/WALMART_GLOBAL_TECH_297_1.html"],
+  ["WELLS FARGO","Technology Analyst","35.0 LPA","2025-11-12","16:04","2025-11-13","23:59","JDs_Phase2/WELLS_FARGO_96_3.html"],
+  ["Wayground (formerly Quizizz)","Software Engineer","41.4 LPA","2025-11-12","16:03","2025-11-15","14:00","JDs_Phase2/Wayground_(formerly_Quizizz)_530_1.html"],
+  ["WeMakeScholars","FullStack Developer","10.0 LPA","2025-12-11","17:05","2025-12-12","12:00","JDs_Phase2/WeMakeScholars_740_1.html"],
+  ["WeWork India","SDE","18.0 LPA","2026-01-12","16:00","2026-01-14","17:00","JDs_Phase2/WeWork_India_835_1.html"],
+  ["Wex Fintech India Private Limited","Software Engineer 1","29.2 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/Wex_Fintech_India_Private_Limited_287_1.html"],
+  ["Willis Towers Watson","Trainee/Junior Engineer","25.0 LPA","2026-03-29","17:28","2026-04-01","23:59","JDs_Phase2/Willis_Towers_Watson_986_1.html"],
+  ["Windflow.ai","AI Engineer","18.0 LPA","2025-11-24","21:18","2025-11-25","23:59","JDs_Phase2/Windflow.ai_353_1.html"],
+  ["Wipro","Project Engineer","10.0 LPA","2026-05-08","13:15","2026-05-11","23:59","JDs_Phase2/Wipro_1008_3.html"],
+  ["Writesonic","Software Engineer","38.5 LPA","2025-11-20","20:38","2025-11-22","20:00","JDs_Phase2/Writesonic_258_3.html"],
+  ["Wyreflow Technologies","Software Developer","9.0 LPA","2026-02-05","14:35","2026-02-06","12:00","JDs_Phase2/Wyreflow_Technologies_873_1.html"],
+  ["YCP Auctus","Analyst","12.8 LPA","2025-10-31","16:51","2025-11-02","23:59","JDs_Phase2/YCP_Auctus_509_1.html"],
+  ["YES BANK LIMITED","Risk Management","16.0 LPA","2026-01-26","19:05","2026-01-27","23:59","JDs_Phase2/YES_BANK_LIMITED_841_1.html"],
+  ["YMS Financial Pvt. Ltd.","Quantitative Researcher","Not specified","2025-12-04","18:00","2025-12-07","18:00","JDs_Phase2/YMS_Financial_Pvt._Ltd._580_1.html"],
+  ["ZS ASSOCIATES","Decision Analytics Associate","14.2 LPA","2025-12-10","15:34","2025-12-11","11:59","JDs_Phase2/ZS_ASSOCIATES_781_1.html"],
+  ["ZS ASSOCIATES","Business Technology Solutions Associate","14.2 LPA","2025-12-10","15:23","2025-12-11","11:59","JDs_Phase2/ZS_ASSOCIATES_781_2.html"],
+  ["Zion Cloud Solutions","GenAI / AI Engineer","6.0 LPA","2026-04-02","15:37","2026-04-03","23:59","JDs_Phase2/Zion_Cloud_Solutions_998_1.html"],
+  ["Zupee","Founder&#x27;s Office","25.0 LPA","2026-03-19","10:05","2026-03-22","11:59","JDs_Phase2/Zupee_965_1.html"],
+  ["eBay","Software Engineer","35.5 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/eBay_368_2.html"],
+  ["eBay","DS","32.0 LPA","2025-11-01","18:00","2025-11-03","23:59","JDs_Phase2/eBay_368_3.html"],
+  ["https://vecmocon.com/","Junior Embedded Hardware Engineer","9.0 LPA","2025-12-14","21:50","2025-12-19","23:59","JDs_Phase2/https:__vecmocon.com__784_1.html"],
+  ["https://vecmocon.com/","Junior Embedded Software Engineer","9.0 LPA","2025-12-14","21:51","2025-12-19","23:59","JDs_Phase2/https:__vecmocon.com__784_2.html"],
+  ["nVent Electrical Products India Pvt Ltd","Digital Leadership Development Associate","12.8 LPA","2025-12-04","13:30","2025-12-05","09:00","JDs_Phase2/nVent_Electrical_Products_India_Pvt_Ltd_638_1.html"],
+  ["redbus private india limited","Associate Data Scientist","17.5 LPA","2025-11-02","19:10","2025-11-05","23:59","JDs_Phase2/redbus_private_india_limited_228_1.html"]
+];
+
+let sortCol = "ctc", sortDir = -1, currentPage = 1;
+
+function parseCTC(s) {
+  if (!s || s === "Not specified") return -1;
+  const m = s.match(/([\d.]+)\s*LPA/i);
+  return m ? parseFloat(m[1]) : -2;
+}
+
+function isIntl(s) { return s && s !== "Not specified" && !s.match(/LPA/i); }
+
+function ctcClass(s) {
+  if (!s || s === "Not specified") return "ctc-na";
+  if (isIntl(s)) return "ctc-intl";
+  const v = parseCTC(s);
+  if (v >= 30) return "ctc-high";
+  if (v >= 15) return "ctc-mid";
+  return "ctc-low";
+}
+
+function dlClass(d) {
+  const diff = (new Date(d) - new Date()) / 86400000;
+  if (diff < 0) return "deadline-past";
+  if (diff < 3) return "deadline-soon";
+  return "";
+}
+
+function setSort(col) {
+  sortDir = sortCol === col ? sortDir * -1 : (col === "ctc" ? -1 : 1);
+  sortCol = col;
+  currentPage = 1;
+  document.querySelectorAll(".sort-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.col === col);
+    b.querySelector(".arrow").textContent = b.dataset.col === col ? (sortDir === -1 ? "↓" : "↑") : "↕";
+  });
+  render();
+}
+
+function applyAll() { currentPage = 1; render(); }
+
+function getFiltered() {
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
+  const cf = document.getElementById("ctcFilter").value;
+  return RAW.filter(r => {
+    const [co, ro, ctc] = r;
+    if (q && !co.toLowerCase().includes(q) && !ro.toLowerCase().includes(q) && !ctc.toLowerCase().includes(q)) return false;
+    if (cf) {
+      const v = parseCTC(ctc);
+      if (cf === "na")    return ctc === "Not specified";
+      if (cf === "intl")  return isIntl(ctc);
+      if (cf === "0-10")  return v >= 0 && v < 10;
+      if (cf === "10-20") return v >= 10 && v < 20;
+      if (cf === "20-30") return v >= 20 && v < 30;
+      if (cf === "30-50") return v >= 30 && v < 50;
+      if (cf === "50+")   return v >= 50;
+    }
+    return true;
+  });
+}
+
+function getSorted(data) {
+  return [...data].sort((a, b) => {
+    if (sortCol === "company")  return sortDir * a[0].toLowerCase().localeCompare(b[0].toLowerCase());
+    if (sortCol === "role")     return sortDir * a[1].toLowerCase().localeCompare(b[1].toLowerCase());
+    if (sortCol === "ctc")      return sortDir * (parseCTC(a[2]) - parseCTC(b[2]));
+    if (sortCol === "cvOpen")   return sortDir * (a[3]+a[4]).localeCompare(b[3]+b[4]);
+    if (sortCol === "deadline") return sortDir * (a[5]+a[6]).localeCompare(b[5]+b[6]);
+    return 0;
+  });
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function render() {
+  const filtered = getFiltered();
+  const sorted = getSorted(filtered);
+  const pp = parseInt(document.getElementById("perPage").value);
+  const totalPages = Math.max(1, Math.ceil(sorted.length / pp));
+  currentPage = Math.min(currentPage, totalPages);
+  const slice = sorted.slice((currentPage-1)*pp, currentPage*pp);
+
+  document.getElementById("countShown").textContent = filtered.length;
+  document.getElementById("countTotal").textContent = RAW.length;
+  document.getElementById("pageInfo").textContent = totalPages > 1 ? currentPage + " / " + totalPages : "1";
+
+  const lpas = filtered.map(r => parseCTC(r[2])).filter(v => v > 0);
+  document.getElementById("highCTC").textContent = lpas.length ? Math.max(...lpas).toFixed(1) + " LPA" : "—";
+
+  const grid = document.getElementById("grid");
+
+  if (!slice.length) {
+    grid.innerHTML = `<div class="empty"><p>No listings match your search.</p></div>`;
+    document.getElementById("pagination").innerHTML = "";
+    return;
+  }
+
+  grid.innerHTML = slice.map(r => {
+    const [co, ro, ctc, cvD, cvT, dlD, dlT, link] = r;
+    return `<div class="card">
+      <div class="card-top">
+        <div class="company-name">${esc(co)}</div>
+        <div class="ctc-badge ${ctcClass(ctc)}">${esc(ctc)}</div>
+      </div>
+      <div class="role-name">${esc(ro)}</div>
+      <div class="divider"></div>
+      <div class="dates">
+        <div class="date-item">
+          <span class="date-label">CV Open</span>
+          <span class="date-value">${cvD}</span>
+          <span class="date-time">${cvT}</span>
+        </div>
+        <div class="date-item ${dlClass(dlD+"T"+dlT)}">
+          <span class="date-label">Deadline</span>
+          <span class="date-value">${dlD}</span>
+          <span class="date-time">${dlT}</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="open-btn" href="${BASE}${link}" target="_blank" rel="noopener">
+          Open
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+    </div>`;
+  }).join("");
+
+  // Pagination
+  if (totalPages <= 1) { document.getElementById("pagination").innerHTML = ""; return; }
+  let pages = [];
+  pages.push(`<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?"disabled":""}>← Prev</button>`);
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || (i >= currentPage-2 && i <= currentPage+2)) {
+      pages.push(`<button class="page-btn ${i===currentPage?"active":""}" onclick="goPage(${i})">${i}</button>`);
+    } else if (i === currentPage-3 || i === currentPage+3) {
+      pages.push(`<span style="color:var(--muted);padding:0 4px">…</span>`);
+    }
+  }
+  pages.push(`<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?"disabled":""}>Next →</button>`);
+  document.getElementById("pagination").innerHTML = pages.join("");
+}
+
+function goPage(p) { currentPage = p; render(); window.scrollTo({top:0,behavior:"smooth"}); }
+
+render();
+</script>
+</body>
+</html>
